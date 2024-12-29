@@ -25,11 +25,11 @@
    ```
 3. テストを実行します。
    ```bash
-   .venv/bin/python -m pytest tests/
+   uv run pytest tests/
    ```
 4. カバレッジを計測してテストを実行します。
    ```bash
-   uvx --with pytest-cov pytest --cov
+   uv run pytest-cov pytest --cov
    ```
 
 ## 依存関係
