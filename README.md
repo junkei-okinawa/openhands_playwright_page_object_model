@@ -25,7 +25,11 @@
    ```
 3. テストを実行します。
    ```bash
-   pytest tests/
+   uvx pytest
+   ```
+4. カバレッジを計測してテストを実行します。
+   ```bash
+   uvx --with pytest-cov pytest --cov
    ```
 
 ## 依存関係
