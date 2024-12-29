@@ -25,7 +25,7 @@
    ```
 3. テストを実行します。
    ```bash
-   uvx pytest
+   .venv/bin/python -m pytest tests/
    ```
 4. カバレッジを計測してテストを実行します。
    ```bash
