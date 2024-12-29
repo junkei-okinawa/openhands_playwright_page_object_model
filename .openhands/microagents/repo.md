@@ -41,3 +41,19 @@ Examples:
   1. `pages/`ディレクトリに新しいPythonファイルを作成します。
   2. ファイル内で、ページに対応するPage Object Modelクラスを定義します。
   3. クラス内には、ページ上の要素にアクセスするためのメソッドを定義します。
+
+note:
+*   **`uv` の使い方**: `uv` は Python のパッケージ管理ツールとして非常に高速で便利ですが、仮想環境の管理や `pytest` の実行には注意が必要です。
+    *   `uv sync` は `requirements.txt` に記載された依存関係を仮想環境にインストールします。
+    *   `uv tool install` はツールをグローバルにインストールし、仮想環境とは独立して実行されます。
+    *   `uvx` は `uv tool` でインストールされたツールを実行するためのコマンドですが、仮想環境の依存関係を自動的に解決する機能はありません。
+    *   `uv pip install -r requirements.txt` で仮想環境に依存関係をインストールできます。
+*   **`pytest` の設定**: `pytest` を使用して非同期テストを実行するには、`pytest-asyncio` プラグインをインストールし、`pytest.ini` または `pyproject.toml` で設定を行う必要があります。
+    *   `pytest.ini` で設定を行う場合は、`[pytest]` セクションに `asyncio_mode = auto` を記述します。
+    *   `pyproject.toml` で設定を行う場合は、`[tool.pytest.ini_options]` セクションに `asyncio_mode = "auto"` を記述します。
+*   **Playwright のインストール**: Playwright のブラウザ実行ファイルは、`uv run playwright install --with-deps chromium` でインストールする必要があります。
+*   **`conftest.py` の使い方**: テストファイルからプロジェクトのモジュールをインポートするには、`conftest.py` を使用して `sys.path` を更新する必要があります。
+*   **`pyproject.toml` の設定**: `pyproject.toml` に `packages = ["pages"]` を追記することで、`pages` ディレクトリをパッケージとして認識させることができます。
+*   **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成するには、`curl` コマンドを使用し、`GITHUB_TOKEN` を設定する必要があります。
+
+これらの知識は、今後の Python プロジェクト開発やテスト自動化に役立つでしょう。
