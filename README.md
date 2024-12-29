@@ -29,7 +29,7 @@
    ```
 4. カバレッジを計測してテストを実行します。
    ```bash
-   uv run pytest-cov pytest --cov
+   uv run pytest --cov tests/
    ```
 
 ## 依存関係
