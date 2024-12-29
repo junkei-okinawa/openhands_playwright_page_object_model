@@ -25,6 +25,8 @@ Guidelines:
 - Page Object Modelクラスは`pages/`ディレクトリに配置します。
 - 可能な限りType Hintを記述します。
 - 新しい機能を追加する際は、必ずE2Eテストを追加します。
+- `git add`を実行する際には、必ず対象となるファイルを指定すること。
+- `git commit`を実行する際には、必ず`-m`オプションを指定し適切な`commit message`を記述すること。
 
 Examples:
 - 新しいテストケースを追加する
