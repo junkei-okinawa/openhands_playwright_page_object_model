@@ -1,3 +1,7 @@
+---
+name: repo
+agent: CodeAct
+---
 Repository: e2e-test-automation
 Description: Playwrightを使用したE2Eテストを自動化するPythonプロジェクトです。与えられたURLからHTMLを解析し、Page Object Modelのコードを自動生成します。
 Directory Structure:
