@@ -1,9 +1,9 @@
-import nest_asyncio
-nest_asyncio.apply()
+
+
 
 import asyncio
 from playwright.async_api import async_playwright
-from openhands_playwright_page_object_model.pages.home_page import HomePage
+from pages.home_page import HomePage
 
 async def test_navigate_to_models_page():
     async with async_playwright() as p:
