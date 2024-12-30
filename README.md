@@ -23,13 +23,30 @@
    ```bash
    uv run playwright install --with-deps chromium
    ```
-3. テストを実行します。
+
+3. allure-framework のインストール
+```bash
+sudo apt-get install default-jre
+wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+sudo dpkg -i allure_2.18.1-1_all.deb
+rm allure_2.18.1-1_all.deb
+# インストールできているか確認
+allure --version
+```
+4. テストを実行します。
    ```bash
-   uv run pytest tests/
+   uv run pytest tests/ --alluredir=allure-results
    ```
-4. カバレッジを計測してテストを実行します。
+
+5. allure レポートを確認
    ```bash
-   uv run pytest --cov tests/
+   allure serve allure-results
+   Generating report to temp directory...
+   # Report successfully generated to /tmp/4283537111202696799/allure-report
+   # Starting web server...
+   # 2024-12-30 07:38:20.548:INFO::main: Logging initialized @788ms to org.eclipse.jetty.util.log.StdErrLog
+   # Can not open browser because this capability is not supported on your platform. You can use the link below to open the report manually.
+   # Server started at <http://192.168.215.4:42273/>. Press <Ctrl+C> to exit
    ```
 
 ## 依存関係
