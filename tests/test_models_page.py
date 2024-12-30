@@ -1,7 +1,9 @@
+import pytest
 import asyncio
 from playwright.async_api import async_playwright
 from pages.home_page import HomePage
 
+@pytest.mark.asyncio
 async def test_navigate_to_models_page():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -15,6 +17,7 @@ async def test_navigate_to_models_page():
         await page.screenshot(path="tests/screenshots/models_page.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_search_models():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
