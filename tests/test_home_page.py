@@ -1,7 +1,9 @@
 import asyncio
 from playwright.async_api import async_playwright
 from pages.home_page import HomePage
+import pytest
 
+@pytest.mark.asyncio
 async def test_click_models_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -14,6 +16,7 @@ async def test_click_models_tab():
         await page.screenshot(path="tests/screenshots/models_tab.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_click_datasets_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -25,6 +28,7 @@ async def test_click_datasets_tab():
         await page.screenshot(path="tests/screenshots/datasets_tab.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_click_spaces_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -36,6 +40,7 @@ async def test_click_spaces_tab():
         await page.screenshot(path="tests/screenshots/spaces_tab.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_click_posts_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -47,6 +52,7 @@ async def test_click_posts_tab():
         await page.screenshot(path="tests/screenshots/posts_tab.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_click_docs_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -58,6 +64,7 @@ async def test_click_docs_tab():
         await page.screenshot(path="tests/screenshots/docs_tab.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_click_enterprise_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -69,6 +76,7 @@ async def test_click_enterprise_tab():
         await page.screenshot(path="tests/screenshots/enterprise_tab.png")
         await browser.close()
 
+@pytest.mark.asyncio
 async def test_click_pricing_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()

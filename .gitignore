@@ -1,3 +1,5 @@
 tests/screenshots
 **__pycache__**
 .coverage
+.pytest_cache
+allure-results
