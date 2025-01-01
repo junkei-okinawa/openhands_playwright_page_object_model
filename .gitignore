@@ -3,3 +3,4 @@ tests/screenshots
 .coverage
 .pytest_cache
 allure-results
+install_jre.log
