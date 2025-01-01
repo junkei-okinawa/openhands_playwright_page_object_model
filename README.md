@@ -30,7 +30,7 @@ sudo apt-get install -y default-jre
 wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
 sudo dpkg -i allure_2.18.1-1_all.deb
 rm allure_2.18.1-1_all.deb
-rm allure_2.18.1-1_all.deb install_jre.log
+rm install_jre.log
 
 # インストールできているか確認
 allure --version
@@ -43,14 +43,13 @@ allure --version
 5. allure レポートを確認
    ```bash
    allure serve allure-results &
-   Generating report to temp directory...
+   # Generating report to temp directory...
    # Report successfully generated to /tmp/4283537111202696799/allure-report
    # Starting web server...
    # 2024-12-30 07:38:20.548:INFO::main: Logging initialized @788ms to org.eclipse.jetty.util.log.StdErrLog
    # Can not open browser because this capability is not supported on your platform. You can use the link below to open the report manually.
    # Server started at <http://192.168.215.4:42273/>. Press <Ctrl+C> to exit
    ```
-
 
 ## 依存関係
 
