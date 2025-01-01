@@ -30,6 +30,7 @@ sudo apt-get install -y default-jre
 wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
 sudo dpkg -i allure_2.18.1-1_all.deb
 rm allure_2.18.1-1_all.deb
+33. `allure_2.18.1-1_all.deb` と `install_jre.log` は不要なファイルのため削除しました。
 # インストールできているか確認
 allure --version
 ```
@@ -48,7 +49,7 @@ allure --version
    # Can not open browser because this capability is not supported on your platform. You can use the link below to open the report manually.
    # Server started at <http://192.168.215.4:42273/>. Press <Ctrl+C> to exit
    ```
-5.  `install_jre.log` は不要なファイルのため削除しました。
+
 
 ## 依存関係
 
