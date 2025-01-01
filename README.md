@@ -26,7 +26,7 @@
 
 3. allure-framework のインストール
 ```bash
-sudo apt-get install default-jre
+sudo apt-get install -y default-jre
 wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
 sudo dpkg -i allure_2.18.1-1_all.deb
 rm allure_2.18.1-1_all.deb
@@ -40,7 +40,7 @@ allure --version
 
 5. allure レポートを確認
    ```bash
-   allure serve allure-results
+   allure serve allure-results &
    Generating report to temp directory...
    # Report successfully generated to /tmp/4283537111202696799/allure-report
    # Starting web server...
