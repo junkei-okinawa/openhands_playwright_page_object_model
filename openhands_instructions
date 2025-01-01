@@ -58,25 +58,22 @@ note:
 *   **`pyproject.toml` の設定**: `pyproject.toml` に `packages = ["pages"]` を追記することで、`pages` ディレクトリをパッケージとして認識させることができます。
 *   **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成するには、`curl` コマンドを使用し、`GITHUB_TOKEN` を設定する必要があります。
 
+*   **今日の学び**:
+        *   **`uv` の使い方**: `uv` は Python のパッケージ管理ツールとして非常に高速で便利ですが、仮想環境の管理や `pytest` の実行には注意が必要です。
+            *   `uv sync` は `requirements.txt` に記載された依存関係を仮想環境にインストールします。
+            *   `uv tool install` はツールをグローバルにインストールし、仮想環境とは独立して実行されます。
+            *   `uvx` は `uv tool` でインストールされたツールを実行するためのコマンドですが、仮想環境の依存関係を自動的に解決する機能はありません。
+            *   `uv pip install -r requirements.txt` で仮想環境に依存関係をインストールできます。
+        *   **`pytest` の設定**: `pytest` を使用して非同期テストを実行するには、`pytest-asyncio` プラグインをインストールし、`pytest.ini` または `pyproject.toml` で設定を行う必要があります。
+            *   `pytest.ini` で設定を行う場合は、`[pytest]` セクションに `asyncio_mode = auto` を記述します。
+            *   `pyproject.toml` で設定を行う場合は、`[tool.pytest.ini_options]` セクションに `asyncio_mode = "auto"` を記述します。
+        *   **Playwright のインストール**: Playwright のブラウザ実行ファイルは、`uv run playwright install --with-deps chromium` でインストールする必要があります。
+        *   **`conftest.py` の使い方**: テストファイルからプロジェクトのモジュールをインポートするには、`conftest.py` を使用して `sys.path` を更新する必要があります。
+        *   **`pyproject.toml` の設定**: `pyproject.toml` に `packages = ["pages"]` を追記することで、`pages` ディレクトリをパッケージとして認識させることができます。
+        *   **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成するには、`curl` コマンドを使用し、`GITHUB_TOKEN` を設定する必要があります。
+        *   **`sudo apt-get install` の注意点**: `sudo apt-get install` は時間がかかる場合があり、バックグラウンドで実行するとプロンプトに応答できなくなるため、`-y` オプションを使用するか、フォアグラウンドで実行する必要があります。また、ロックファイルによる競合が発生する可能性があるため、注意が必要です。
+        *   **`git filter-branch` の使い方**: 過去のコミット履歴からファイルを削除するには、`git filter-branch` を使用できますが、注意が必要です。
+        *   **`README.md` の記述**: `README.md` には、実行手順や設定だけでなく、削除したファイルや変更点についても記述することで、他の開発者が理解しやすくなります。
+        *   **`git push --force` の使い方**: 強制プッシュは、リモートブランチの履歴を書き換えるため、注意して使用する必要があります。
 これらの知識は、今後の Python プロジェクト開発やテスト自動化に役立つでしょう。
 
-今日の学び：
-
-1.  **`uv` の使い方**: `uv` は Python のパッケージ管理ツールとして非常に高速で便利ですが、仮想環境の管理や `pytest` の実行には注意が必要です。
-    *   `uv sync` は `requirements.txt` に記載された依存関係を仮想環境にインストールします。
-    *   `uv tool install` はツールをグローバルにインストールし、仮想環境とは独立して実行されます。
-    *   `uvx` は `uv tool` でインストールされたツールを実行するためのコマンドですが、仮想環境の依存関係を自動的に解決する機能はありません。
-    *   `uv pip install -r requirements.txt` で仮想環境に依存関係をインストールできます。
-2.  **`pytest` の設定**: `pytest` を使用して非同期テストを実行するには、`pytest-asyncio` プラグインをインストールし、`pytest.ini` または `pyproject.toml` で設定を行う必要があります。
-    *   `pytest.ini` で設定を行う場合は、`[pytest]` セクションに `asyncio_mode = auto` を記述します。
-    *   `pyproject.toml` で設定を行う場合は、`[tool.pytest.ini_options]` セクションに `asyncio_mode = "auto"` を記述します。
-3.  **Playwright のインストール**: Playwright のブラウザ実行ファイルは、`uv run playwright install --with-deps chromium` でインストールする必要があります。
-4.  **`conftest.py` の使い方**: テストファイルからプロジェクトのモジュールをインポートするには、`conftest.py` を使用して `sys.path` を更新する必要があります。
-5.  **`pyproject.toml` の設定**: `pyproject.toml` に `packages = ["pages"]` を追記することで、`pages` ディレクトリをパッケージとして認識させることができます。
-6.  **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成するには、`curl` コマンドを使用し、`GITHUB_TOKEN` を設定する必要があります。
-7.  **`sudo apt-get install` の注意点**: `sudo apt-get install` は時間がかかる場合があり、バックグラウンドで実行するとプロンプトに応答できなくなるため、`-y` オプションを使用するか、フォアグラウンドで実行する必要があります。また、ロックファイルによる競合が発生する可能性があるため、注意が必要です。
-8.  **`git filter-branch` の使い方**: 過去のコミット履歴からファイルを削除するには、`git filter-branch` を使用できますが、注意が必要です。
-9.  **`README.md` の記述**: `README.md` には、実行手順や設定だけでなく、削除したファイルや変更点についても記述することで、他の開発者が理解しやすくなります。
-10. **`git push --force` の使い方**: 強制プッシュは、リモートブランチの履歴を書き換えるため、注意して使用する必要があります。
-
-これらの知識は、今後の Python プロジェクト開発やテスト自動化に役立つでしょう。
