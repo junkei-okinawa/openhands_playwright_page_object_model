@@ -1,4 +1,4 @@
-[project]
+[project]\npackages = ["pages"]
 name = "openhands-playwright-page-object-model"
 version = "0.1.0"
 description = "Add your description here"
