@@ -4,3 +4,4 @@ tests/screenshots
 .pytest_cache
 allure-results
 install_jre.log
+uv_sync.log
