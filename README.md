@@ -14,35 +14,35 @@
   - `uv.lock`: 依存関係のロックファイル。
 
 ## 実行方法
-
 1. 依存関係をインストールします。
    ```bash
    uv sync
    ```
+
 2. Playwright のブラウザバイナリをインストールします。
    ```bash
    uv run playwright install --with-deps chromium
    ```
 
-3. allure-framework のインストール
-```bash
-sudo apt-get install -y default-jre
-wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
-sudo dpkg -i allure_2.18.1-1_all.deb
-rm allure_2.18.1-1_all.deb
-rm install_jre.log
-
-# インストールできているか確認
-allure --version
-```
-4. テストを実行します。
+3. allure をインストールします。
    ```bash
-   uv run pytest tests/ --alluredir=allure-results
+   sudo apt-get install -y default-jre
+   wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+   sudo dpkg -i allure_2.18.1-1_all.deb
+   rm allure_2.18.1-1_all.deb
+   rm install_jre.log
+   ```
+
+4. テストを実行します。
+
+   仮想環境内のパッケージを使用する場合は、`.venv/bin/pytest` のように直接パスを指定して実行する必要があります。
+   ```bash
+   .venv/bin/pytest --cov --alluredir=allure-results
    ```
 
 5. allure レポートを確認
    ```bash
-   allure serve allure-results &
+   uvx allure serve allure-results
    # Generating report to temp directory...
    # Report successfully generated to /tmp/4283537111202696799/allure-report
    # Starting web server...
@@ -59,3 +59,5 @@ allure --version
 ## 貢献
 
 プルリクエストを送信して、このプロジェクトに貢献してください。
+
+
