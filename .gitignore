@@ -5,5 +5,4 @@ tests/screenshots
 allure-results
 install_jre.log
 uv_sync.log
-
 allure.log

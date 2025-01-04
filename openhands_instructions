@@ -62,6 +62,14 @@ note:
     *   `pytest.ini` で設定を行う場合は、`[pytest]` セクションに `asyncio_mode = auto` を記述します。
     *   `pyproject.toml` で設定を行う場合は、`[tool.pytest.ini_options]` セクションに `asyncio_mode = "auto"` を記述します。
 *   **Playwright のインストール**: Playwright のブラウザ実行ファイルは、`uv run playwright install --with-deps chromium` でインストールする必要があります。
+    *   **`allure` のインストール**: `allure` は、以下のコマンドでインストールする必要があります。
+        ```bash
+        sudo apt-get install -y default-jre
+        wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+        sudo dpkg -i allure_2.18.1-1_all.deb
+        rm allure_2.18.1-1_all.deb
+        rm install_jre.log
+        ```
 *   **`conftest.py` の使い方**: テストファイルからプロジェクトのモジュールをインポートするには、`conftest.py` を使用して `sys.path` を更新する必要があります。
 *   **`pyproject.toml` の設定**: `pyproject.toml` に `packages = ["pages"]` を追記することで、`pages` ディレクトリをパッケージとして認識させることができます。
 *   **`pytest-cov` の設定**: `pytest-cov` は、`pyproject.toml` の `[project]` セクションを読み込もうとしますが、形式が正しくないとエラーが発生します。`[project]` セクションを削除するか、`pytest.ini` に `testpaths` を設定することで、エラーを回避できます。
