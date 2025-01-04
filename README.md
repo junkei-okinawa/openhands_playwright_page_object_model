@@ -30,7 +30,6 @@
    wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
    sudo dpkg -i allure_2.18.1-1_all.deb
    rm allure_2.18.1-1_all.deb
-   rm install_jre.log
    ```
 
 4. テストを実行します。
@@ -42,14 +41,11 @@
 
 5. allure レポートを確認
    ```bash
-   uvx allure serve allure-results
-   # Generating report to temp directory...
-   # Report successfully generated to /tmp/4283537111202696799/allure-report
-   # Starting web server...
-   # 2024-12-30 07:38:20.548:INFO::main: Logging initialized @788ms to org.eclipse.jetty.util.log.StdErrLog
-   # Can not open browser because this capability is not supported on your platform. You can use the link below to open the report manually.
-   # Server started at <http://192.168.215.4:42273/>. Press <Ctrl+C> to exit
+   allure serve allure-results > allure.log 2>&1 &
    ```
+   上記のコマンドで `allure serve` をバックグラウンドで実行します。
+   `allure.log` に出力されたURLをブラウザで開き、レポートを確認してください。
+   レポート確認後、バックグラウンドで実行している `allure serve` のプロセスをkillしてください。
 
 ## 依存関係
 
@@ -57,7 +53,4 @@
 - pytest
 
 ## 貢献
-
 プルリクエストを送信して、このプロジェクトに貢献してください。
-
-
