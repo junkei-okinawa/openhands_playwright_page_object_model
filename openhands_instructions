@@ -24,6 +24,14 @@ echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
 - `uv run playwright install --with-deps chromium`を実行してPlaywrightのブラウザバイナリをインストールします。
 - `uv venv`を実行して仮想環境を作成します。
 - `source .venv/bin/activate`を実行して仮想環境を有効化します。
+- `allure` をインストールします。
+    ```bash
+    sudo apt-get install -y default-jre
+    wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+    sudo dpkg -i allure_2.18.1-1_all.deb
+    rm allure_2.18.1-1_all.deb
+    rm install_jre.log
+    ```
 
 Guidelines:
 - テストスクリプトは`tests/`ディレクトリに配置します。
@@ -72,5 +80,8 @@ note:
 *   **`git filter-branch` の使い方**: 過去のコミット履歴からファイルを削除するには、`git filter-branch` を使用できますが、注意が必要です。
 *   **`README.md` の記述**: `README.md` には、実行手順や設定だけでなく、削除したファイルや変更点についても記述することで、他の開発者が理解しやすくなります。
 *   **`git push --force` の使い方**: 強制プッシュは、リモートブランチの履歴を書き換えるため、注意して使用する必要があります。
-これらの知識は、今後の Python プロジェクト開発やテスト自動化に役立つでしょう。
 *   **プロジェクトのナレッジ**: プロジェクトに関するナレッジは、この `openhands_instructions` に記述してください。
+*   **`allure serve` の実行**: `allure serve` コマンドは、バックグラウンドで実行し、ブラウザでレポートを確認後、プロセスをkillする必要があります。`uvx` は `apt-get` でインストールされた `allure` を認識しないため、直接 `allure serve` コマンドを使用する必要があります。
+*   **ブラウザでのレポート確認**: `allure serve` が出力するURLをブラウザで開き、レポートを確認します。
+*   **ファイル編集の代替手段**: `str_replace_editor` や `sed` コマンドでの編集が困難な場合、ファイルを削除して再作成するという手段が有効です。
+*   **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成する際には、リポジトリ名や組織名を正しく取得する必要があります。`git remote -v` の出力からリポジトリ情報を抽出する際には、`awk` や `sed` などのコマンドの処理を慎重に行う必要があります。また、APIリクエストが失敗した場合は、リポジトリ名や組織名が正しいか確認する必要があります。
