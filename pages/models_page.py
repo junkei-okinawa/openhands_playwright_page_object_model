@@ -6,7 +6,7 @@ class ModelsPage:
         self.title = page.locator('h1')
 
     async def get_title_text(self):
-        return await self.title.text_content()
+        return await self.title.inner_text()
 
     @property
     def search_box(self):
@@ -23,4 +23,4 @@ class ModelsPage:
         return self.page.locator('article:first-child h4')
 
     async def get_first_model_card_title_text(self):
-        return await self.first_model_card_title.text_content()
+        return await self.first_model_card_title.inner_text()
