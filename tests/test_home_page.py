@@ -10,8 +10,9 @@ async def test_click_models_tab():
         page = await browser.new_page()
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
-        await home_page.click_models_tab()
-        # ここで、Modelsページに遷移したことを確認する処理を追加するとより良い
+        models_page = await home_page.click_models_tab()
+        title_text = await models_page.get_title_text()
+        assert title_text == "Models"
         print("Models tab clicked successfully")
         await page.screenshot(path="tests/screenshots/models_tab.png")
         await browser.close()
@@ -23,7 +24,9 @@ async def test_click_datasets_tab():
         page = await browser.new_page()
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
-        await home_page.click_datasets_tab()
+        datasets_page = await home_page.click_datasets_tab()
+        title_text = await datasets_page.get_title_text()
+        assert title_text == "Datasets"
         print("Datasets tab clicked successfully")
         await page.screenshot(path="tests/screenshots/datasets_tab.png")
         await browser.close()
