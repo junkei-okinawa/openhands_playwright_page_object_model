@@ -15,4 +15,3 @@ async def test_datasets_page_title():
         datasets_page = await home_page.click_datasets_tab()
         title_text = await datasets_page.get_title_text()
         assert title_text == "Datasets"
-
