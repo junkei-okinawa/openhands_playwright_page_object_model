@@ -31,10 +31,3 @@ async def test_search_models():
         print(f"First model card title: {first_model_title}")
         await page.screenshot(path="tests/screenshots/search_results.png")
         await browser.close()
-
-async def main():
-    await test_navigate_to_models_page()
-    await test_search_models()
-
-if __name__ == '__main__':
-    asyncio.run(main())
