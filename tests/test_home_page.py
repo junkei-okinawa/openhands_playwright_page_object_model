@@ -94,3 +94,12 @@ async def test_click_pricing_tab():
         png_bytes = await page.screenshot()
         allure.attach(png_bytes, name="pricing_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
+
+@pytest.mark.asyncio
+async def test_failing_test():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto("https://huggingface.co/")
+        assert await page.title() == "Wrong Title"
+        await browser.close()

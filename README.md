@@ -49,6 +49,8 @@
    `allure.log` に出力されたURLをブラウザで開き、レポートを確認してください。
    レポート確認後、バックグラウンドで実行している `allure serve` のプロセスをkillしてください。
 
+**Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being generated. This issue needs further investigation.
+
 ## 依存関係
 
 - Playwright
