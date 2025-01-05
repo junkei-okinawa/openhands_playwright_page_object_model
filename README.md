@@ -14,6 +14,8 @@
   - `uv.lock`: 依存関係のロックファイル。
 
 ## 実行方法
+
+The screenshot functionality has been updated to use `allure.attach` to attach screenshots to the test report.
 1. 依存関係をインストールします。
    ```bash
    uv sync
