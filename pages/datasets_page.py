@@ -10,7 +10,7 @@ class DatasetsPage:
 
     @property
     def browse_datasets_button(self):
-        return self.page.locator('a[href="/datasets?p=1"]')
+        return self.page.locator('xpath=//article[contains(@class, "overview-card-wrapper")][1]')
 
     async def click_browse_datasets_button(self):
         await self.browse_datasets_button.click()
