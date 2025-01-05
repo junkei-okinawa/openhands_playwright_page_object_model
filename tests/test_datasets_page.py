@@ -19,5 +19,3 @@ async def test_datasets_page_title():
 async def main():
     await test_datasets_page_title(page)
 
-if __name__ == '__main__':
-    asyncio.run(main())
