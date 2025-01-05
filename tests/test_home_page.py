@@ -94,5 +94,9 @@ async def test_click_pricing_tab():
         await page.screenshot(path="tests/screenshots/pricing_tab.png")
         await browser.close()
 
+
+async def main():
+    pass
+
 if __name__ == '__main__':
     asyncio.run(main())
