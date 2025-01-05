@@ -7,3 +7,5 @@ class DatasetsPage:
 
     async def get_title_text(self) -> str:
         return await self.title.inner_text()
+
+    
