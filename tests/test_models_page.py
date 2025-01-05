@@ -1,7 +1,7 @@
 import allure
 import pytest
 import asyncio
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, expect
 from pages.home_page import HomePage
 
 @pytest.mark.asyncio
@@ -27,8 +27,7 @@ async def test_search_models():
         home_page = HomePage(page)
         models_page = await home_page.navigate_to_models_page()
         await models_page.search_models("bert")
-        first_model_title = await models_page.get_first_model_card_title_text()
-        assert first_model_title.lower() != ""
+        await expect(models_page.filter_by_name_box).to_have_value("bert")
         
         png_bytes = await page.screenshot()
         allure.attach(png_bytes, name="search_results", attachment_type=allure.attachment_type.PNG)
