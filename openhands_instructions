@@ -103,9 +103,6 @@ note:
 ## `str_replace_editor`ツール利用時の注意点と教訓
 
 ### 1. `str_replace_editor` の挙動に関する注意点
-106     *   **`str_replace_editor` の制限事項**: `str_replace_editor` は、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
-   107      *   `str_replace_editor` の `create` コマンドは、内部で `\` をエスケープしてしまうため、ファイル作成時に構文エラーが発生する場合があります。
-   108      *   `str_replace_editor` の `str_replace` コマンドは、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
 *   **`str_replace_editor` の制限事項**: `str_replace_editor` は、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
     *   `str_replace_editor` の `create` コマンドは、内部で `\` をエスケープしてしまうため、ファイル作成時に構文エラーが発生する場合があります。
     *   `str_replace_editor` の `str_replace` コマンドは、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
