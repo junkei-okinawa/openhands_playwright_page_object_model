@@ -15,8 +15,8 @@ class ModelsPage:
     async def search_models(self, keyword):
         await self.search_box.wait_for(state="visible")
         await self.search_box.fill(keyword)
-        await self.search_box.press("Enter")
         await self.page.wait_for_load_state()
+        await self.search_box.press("Enter")
 
     @property
     def first_model_card_title(self):
