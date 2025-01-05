@@ -29,6 +29,7 @@ async def test_search_models():
         await models_page.search_models("bert")
         first_model_title = await models_page.get_first_model_card_title_text()
         assert first_model_title.lower() != ""
+        
         png_bytes = await page.screenshot()
         allure.attach(png_bytes, name="search_results", attachment_type=allure.attachment_type.PNG)
         await browser.close()
