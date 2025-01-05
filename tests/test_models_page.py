@@ -15,7 +15,7 @@ async def test_navigate_to_models_page():
         title_text = await models_page.get_title_text()
         assert title_text == "Models"
         png_bytes = await page.screenshot()
-        allure.attach(png_bytes, name="models_page", attachment_type=allure.attachment_type.PNG)
+        allure.attach(png_bytes, name=test_navigate_to_models_page.__name__, attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -30,5 +30,5 @@ async def test_search_models():
         await expect(models_page.filter_by_name_box).to_have_value("bert")
         
         png_bytes = await page.screenshot()
-        allure.attach(png_bytes, name="search_results", attachment_type=allure.attachment_type.PNG)
+        allure.attach(png_bytes, name=test_search_models.__name__, attachment_type=allure.attachment_type.PNG)
         await browser.close()

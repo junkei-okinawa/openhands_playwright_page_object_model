@@ -17,4 +17,4 @@ async def test_datasets_page_title():
         title_text = await datasets_page.get_title_text()
         assert title_text == "Datasets"
         png_bytes = await page.screenshot()
-        allure.attach(png_bytes, name="datasets_page", attachment_type=allure.attachment_type.PNG)
+        allure.attach(png_bytes, name=test_datasets_page_title.__name__, attachment_type=allure.attachment_type.PNG)
