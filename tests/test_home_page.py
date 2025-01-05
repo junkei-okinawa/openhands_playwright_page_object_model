@@ -1,3 +1,4 @@
+import allure
 import asyncio
 from playwright.async_api import async_playwright
 from pages.home_page import HomePage
@@ -14,8 +15,8 @@ async def test_click_models_tab():
         models_page = await home_page.click_models_tab()
         title_text = await models_page.get_title_text()
         assert title_text == "Models"
-        print("Models tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/models_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="models_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -28,8 +29,8 @@ async def test_click_datasets_tab():
         datasets_page = await home_page.click_datasets_tab()
         title_text = await datasets_page.get_title_text()
         assert title_text == "Datasets"
-        print("Datasets tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/datasets_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="datasets_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -42,8 +43,8 @@ async def test_click_spaces_tab():
         spaces_page = await home_page.click_spaces_tab()
         title_text = await spaces_page.get_title_text()
         assert title_text == "Spaces"
-        print("Spaces tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/spaces_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="spaces_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -54,8 +55,8 @@ async def test_click_posts_tab():
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
         await home_page.click_posts_tab()
-        print("Posts tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/posts_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="posts_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -66,8 +67,8 @@ async def test_click_docs_tab():
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
         await home_page.click_docs_tab()
-        print("Docs tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/docs_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="docs_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -78,8 +79,8 @@ async def test_click_enterprise_tab():
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
         await home_page.click_enterprise_tab()
-        print("Enterprise tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/enterprise_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="enterprise_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
 
 @pytest.mark.asyncio
@@ -90,6 +91,6 @@ async def test_click_pricing_tab():
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
         await home_page.click_pricing_tab()
-        print("Pricing tab clicked successfully")
-        await page.screenshot(path="tests/screenshots/pricing_tab.png")
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="pricing_tab", attachment_type=allure.attachment_type.PNG)
         await browser.close()
