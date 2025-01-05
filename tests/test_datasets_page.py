@@ -1,3 +1,4 @@
+import allure
 import pytest
 import asyncio
 from playwright.async_api import async_playwright, Page
@@ -15,3 +16,5 @@ async def test_datasets_page_title():
         datasets_page = await home_page.click_datasets_tab()
         title_text = await datasets_page.get_title_text()
         assert title_text == "Datasets"
+        png_bytes = await page.screenshot()
+        allure.attach(png_bytes, name="datasets_page", attachment_type=allure.attachment_type.PNG)
