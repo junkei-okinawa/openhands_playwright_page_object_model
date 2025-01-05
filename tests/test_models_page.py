@@ -32,4 +32,3 @@ async def test_search_models():
         await page.screenshot(path="tests/screenshots/search_results.png")
         await browser.close()
 
-
