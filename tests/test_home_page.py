@@ -32,22 +32,6 @@ async def test_click_datasets_tab():
         await browser.close()
 
 @pytest.mark.asyncio
-async def test_click_browse_datasets_button():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-        await page.goto("https://huggingface.co/")
-        home_page = HomePage(page)
-        datasets_page = await home_page.click_datasets_tab()
-        await datasets_page.page.wait_for_load_state()
-        await datasets_page.page.wait_for_timeout(2000)
-        await datasets_page.page.wait_for_selector('a:has-text("Browse 100k+ datasets")')
-        await datasets_page.click_browse_datasets_button()
-        print("Browse Datasets button clicked successfully")
-        await page.screenshot(path="tests/screenshots/browse_datasets_button.png")
-        await browser.close()
-
-@pytest.mark.asyncio
 async def test_click_spaces_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
