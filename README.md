@@ -15,7 +15,7 @@
 
 ## 実行方法
 
-The screenshot functionality has been updated to use `allure.attach` to attach screenshots to the test report.
+スクリーンショット機能は、テストレポートにスクリーンショットを添付するために`allure.attach`を使用するように更新されました。
 1. 依存関係をインストールします。
    ```bash
    uv sync
