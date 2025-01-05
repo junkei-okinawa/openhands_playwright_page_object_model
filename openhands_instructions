@@ -35,6 +35,7 @@ echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
     ```
 
 ## Guidelines
+- コードスタイルは`PEP8`を準拠する。１行が長くなる場合は適宜改行する。改行ルールは[Flake8 Rules: Line break occurred after a binary operator (W504)](https://www.flake8rules.com/rules/W504.html)に準拠する
 - テストスクリプトは`tests/`ディレクトリに配置します。
 - 各テストケースは、対応するページのPage Object Modelクラスを使用します。
 - Page Object Modelクラスは`pages/`ディレクトリに配置します。
