@@ -1,5 +1,6 @@
 from playwright.async_api import Page
 from .models_page import ModelsPage
+from .spaces_page import SpacesPage
 from .datasets_page import DatasetsPage
 
 class HomePage:
@@ -25,6 +26,7 @@ class HomePage:
 
     async def click_spaces_tab(self):
         await self.spaces_tab.click()
+        return SpacesPage(self.page)
 
     @property
     def posts_tab(self):
