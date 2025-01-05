@@ -2,6 +2,7 @@ import asyncio
 from playwright.async_api import async_playwright
 from pages.home_page import HomePage
 import pytest
+from pages.spaces_page import SpacesPage
 
 @pytest.mark.asyncio
 async def test_click_models_tab():
@@ -38,7 +39,9 @@ async def test_click_spaces_tab():
         page = await browser.new_page()
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
-        await home_page.click_spaces_tab()
+        spaces_page = await home_page.click_spaces_tab()
+        title_text = await spaces_page.get_title_text()
+        assert title_text == "Spaces"
         print("Spaces tab clicked successfully")
         await page.screenshot(path="tests/screenshots/spaces_tab.png")
         await browser.close()
@@ -90,21 +93,3 @@ async def test_click_pricing_tab():
         print("Pricing tab clicked successfully")
         await page.screenshot(path="tests/screenshots/pricing_tab.png")
         await browser.close()
-
-
-async def main():
-    await test_click_models_tab()
-    await test_click_datasets_tab()
-    await test_click_spaces_tab()
-    await test_click_posts_tab()
-    await test_click_docs_tab()
-    await test_click_enterprise_tab()
-    await test_click_pricing_tab()
-    await test_click_spaces_tab()
-    await test_click_posts_tab()
-    await test_click_docs_tab()
-    await test_click_enterprise_tab()
-    await test_click_pricing_tab()
-
-if __name__ == '__main__':
-    asyncio.run(main())
