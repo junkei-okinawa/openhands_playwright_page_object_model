@@ -16,6 +16,4 @@ async def test_datasets_page_title():
         title_text = await datasets_page.get_title_text()
         assert title_text == "Datasets"
 
-async def main():
-    await test_datasets_page_title(page)
 

@@ -32,7 +32,4 @@ async def test_search_models():
         await page.screenshot(path="tests/screenshots/search_results.png")
         await browser.close()
 
-async def main():
-    await test_navigate_to_models_page()
-    await test_search_models()
 
