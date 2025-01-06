@@ -10,6 +10,7 @@ class HomePage:
 
     async def click_models_tab(self):
         await self.models_tab.click()
+        await self.page.wait_for_load_state()
         return ModelsPage(self.page)
 
     @property
@@ -18,6 +19,7 @@ class HomePage:
 
     async def click_datasets_tab(self):
         await self.datasets_tab.click()
+        await self.page.wait_for_load_state()
         return DatasetsPage(self.page)
 
     @property
@@ -26,6 +28,7 @@ class HomePage:
 
     async def click_spaces_tab(self):
         await self.spaces_tab.click()
+        await self.page.wait_for_load_state()
         return SpacesPage(self.page)
 
     @property
@@ -34,6 +37,7 @@ class HomePage:
 
     async def click_posts_tab(self):
         await self.posts_tab.click()
+        await self.page.wait_for_load_state()
 
     @property
     def docs_tab(self):
@@ -41,6 +45,7 @@ class HomePage:
 
     async def click_docs_tab(self):
         await self.docs_tab.click()
+        await self.page.wait_for_load_state()
 
     @property
     def enterprise_tab(self):
@@ -48,6 +53,7 @@ class HomePage:
 
     async def click_enterprise_tab(self):
         await self.enterprise_tab.click()
+        await self.page.wait_for_load_state()
 
     @property
     def pricing_tab(self):
@@ -55,6 +61,7 @@ class HomePage:
 
     async def click_pricing_tab(self):
         await self.pricing_tab.click()
+        await self.page.wait_for_load_state()
 
     async def navigate_to_models_page(self):
         await self.click_models_tab()

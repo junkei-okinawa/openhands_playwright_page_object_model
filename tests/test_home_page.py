@@ -9,7 +9,9 @@ from pages.spaces_page import SpacesPage
 async def test_click_models_tab():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
-        page = await browser.new_page()
+        context = await browser.new_context(record_video_dir="videos/")
+        # page = await browser.new_page()
+        page = await context.new_page()
         await page.goto("https://huggingface.co/")
         home_page = HomePage(page)
         models_page = await home_page.click_models_tab()
@@ -17,6 +19,14 @@ async def test_click_models_tab():
         assert title_text == "Models"
         png_bytes = await page.screenshot()
         allure.attach(png_bytes, name="models_tab", attachment_type=allure.attachment_type.PNG)
+        video_path = await page.video.path()
+        await page.close()
+        await context.close()
+        allure.attach(
+            open(video_path, 'rb').read(),
+            name=f"click_models_tab.webm",
+            attachment_type=allure.attachment_type.WEBM
+        )
         await browser.close()
 
 @pytest.mark.asyncio

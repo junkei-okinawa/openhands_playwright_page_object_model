@@ -20,14 +20,18 @@ async def video_recording(request):
         if request.node.rep_call.failed:
             try:
                 video_path = await page.video.path()
-                with open(video_path, "rb") as video_file:
-                    allure.attach(video_file.read(), name="video", attachment_type=allure.attachment_type.WEBM)
+                if video_path is not None:
+                    with open(video_path, "rb") as video_file:
+                        allure.attach(video_file.read(), name="video", attachment_type=allure.attachment_type.WEBM)
             except FileNotFoundError:
                 pass
         await page.close()
         await context.close()
         await browser.close()
 
+def pytest_runtest_makereport(item, call):
+    if call.when == "call":
+        item.rep_call = call
 def pytest_runtest_makereport(item, call):
     if call.when == "call":
         item.rep_call = call
