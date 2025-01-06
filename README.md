@@ -48,12 +48,8 @@
    上記のコマンドで `allure serve` をバックグラウンドで実行します。
    `allure.log` に出力されたURLをブラウザで開き、レポートを確認してください。
    レポート確認後、バックグラウンドで実行している `allure serve` のプロセスをkillしてください。
-51      
-    52  **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being attached to the Allure report. The videos are being recorded in the `videos` directory. This issue needs further investigation.
-51      
-    52  **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being attached to the Allure report. The videos are being recorded in the `videos` directory. This issue needs further investigation.
 
-**Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being generated. This issue needs further investigation.
+**Note:** テストの失敗時のみTeardownトグル内にテスト実行時の動画が添付されます
 
 ## 依存関係
 
