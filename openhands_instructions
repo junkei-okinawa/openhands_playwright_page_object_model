@@ -106,6 +106,7 @@ note:
 *   **`pytest` のテスト自動検出**: `pytest` は、テストファイル内の `test_` で始まる関数を自動的にテストケースとして認識し、実行します。そのため、テスト関数を `main` 関数内で明示的に呼び出す必要はありません。
 *   **`async def main():` の不要性**: `pytest` を使用してテストを実行する場合、`async def main():` 関数は不要です。`pytest` はテスト関数を自動的に検出して実行するため、`main` 関数は必要ありません。
 108     **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being attached to the Allure report. The videos are being recorded in the `videos` directory. This issue needs further investigation.
+108     **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being attached to the Allure report. The videos are being recorded in the `videos` directory. This issue needs further investigation.
 108     **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being generated. This issue needs further investigation.
 108     **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being generated. This issue needs further investigation.
 108     **Note:** Video recording is currently not working as expected. The test setup includes a fixture to record videos on test failure, but the videos are not being generated. This issue needs further investigation.
