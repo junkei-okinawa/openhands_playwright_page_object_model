@@ -1,6 +1,8 @@
+import allure
 import pytest
 import asyncio
 from playwright.async_api import Page, expect
+
 from pages.home_page import HomePage
 
 @pytest.mark.asyncio
