@@ -14,7 +14,7 @@ async def video_recording(request):
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         test_name = request.node.name
-        context = await browser.new_context(record_video="on", record_video_dir=f"{Path(__file__).parent}/videos")
+        context = await browser.new_context(record_video="retain-on-failure")
         page = await context.new_page()
         yield page
         if request.node.rep_call.failed:
