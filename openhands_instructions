@@ -3,7 +3,7 @@ name: repo
 agent: CodeAct
 ---
 Repository: e2e-test-automation
-Description: Playwrightを使用したE2Eテストを自動化するPythonプロジェクトです。与えられたURLからHTMLを解析し、Page Object Modelのコードを自動生成します。
+Description: Playwrightを使用したE2Eテストを自動化するPythonプロジェクトです。与えられたURLからHTMLを解析し、Page Object Modelのコードを自動生成します。このプロジェクトは、Web UI テストをPlaywright ＆ Page Object Model (POM) で実現するためにAI Agent[OpenHands](https://github.com/All-Hands-AI/OpenHands)を使用している実験的なプロジェクトです。
 Directory Structure:
 - tests/: E2Eテストスクリプトを格納するディレクトリ
 - pages/: Page Object Modelのクラスを格納するディレクトリ
@@ -13,19 +13,32 @@ Directory Structure:
 
 ## Setup
 
-### 1-1. install [uv](https://docs.astral.sh/uv/getting-started/installation/)
-An extremely fast Python package and project manager, written in Rust.
-- macOS and linux
-```sh
-curl -LsSf https://astral.sh/uv/install.sh | sh
-echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
-echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
-```
-- `uv sync`を実行して依存関係をインストールします。
-- `uv run playwright install --with-deps chromium`を実行してPlaywrightのブラウザバイナリをインストールします。
-- `uv venv`を実行して仮想環境を作成します。
-- `source .venv/bin/activate`を実行して仮想環境を有効化します。
-- `allure` をインストールします。
+1. install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+    `uv`は`Rust`で書かれた非常に高速なPythonパッケージ&プロジェクト管理ツールです。
+    - macOS and linux
+    ```sh
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
+    echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
+    ```
+2. 依存関係をインストールします。
+    ```bash
+    uv sync
+    ```
+3. Playwrightのブラウザバイナリをインストールします。
+    ```bash
+    uv run playwright install --with-deps chromium
+    ```
+4. 仮想環境を作成します。
+    ```bash
+    uv venv
+    ```
+5. 仮想環境を有効化します。
+    ```bash
+    source .venv/bin/activate
+    ```
+6. `allure`（テストレポート自動生成ツール） をインストールします。
     ```bash
     sudo apt-get install -y default-jre
     wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
@@ -45,6 +58,10 @@ echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
 - `git add` を実行する際には、必ず `git status` でファイルの変更状態を確認すること。
 - ファイル内容の変更、削除の際には、変更前のファイル内容を確認し、編集後に変更後のファイル内容を確認すること。
 - `git commit`を実行する際には、必ず`-m`オプションを指定し適切な`commit message`を記述すること。
+
+## テストのセットアップとpytestフィクスチャ
+- **ページオブジェクトの初期化**: ページオブジェクトは、`conftest.py` 内のpytestフィクスチャを使用して初期化されます。これにより、テストのセットアップが簡素化され、コードの可読性が向上します。
+- **データ駆動テスト**: テストデータは `test_data.json` ファイルで管理され、pytestフィクスチャを使用してロードされます。これにより、テストの柔軟性と保守性が向上します。
 
 ### 要素特定におけるXPathの活用
 - Playwright で要素を特定する際、CSSセレクタだけでなく、XPath も積極的に活用しましょう。
@@ -105,8 +122,6 @@ note:
 
 *   **`pytest` のテスト自動検出**: `pytest` は、テストファイル内の `test_` で始まる関数を自動的にテストケースとして認識し、実行します。そのため、テスト関数を `main` 関数内で明示的に呼び出す必要はありません。
 *   **`async def main():` の不要性**: `pytest` を使用してテストを実行する場合、`async def main():` 関数は不要です。`pytest` はテスト関数を自動的に検出して実行するため、`main` 関数は必要ありません。
-
-## `str_replace_editor`ツール利用時の注意点と教訓
 
 ### 1. `str_replace_editor` の挙動に関する注意点
 *   **`str_replace_editor` の制限事項**: `str_replace_editor` は、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
@@ -285,41 +300,4 @@ if __name__ == '__main__':
 
 - **問題点:** **指示者**の意図を推測すると、誤った目標に向かって作業してしまう可能性があります。
 - **例:** テスト実行を**指示者**が把握しているだろうと推測してしまったため、誤解が生じました。
-## チーム開発での教訓
-
-### 1. テストの徹底的な実施の重要性
-
-- **問題点:** 変更を加えた後、特にバグ修正後にテストを実行しないと、リグレッションが発生したり、エラーを見逃したりする可能性があります。
-- **例:** `test_datasets_page.py` のインデントを修正した後、テストを再実行しなかったため、`import allure` 文を追加し忘れたことによる `NameError` が発生しました。
-- **解決策:** どんなに小さな変更でも、変更を加えた後は必ずテストを実行してください。これにより、コードが期待どおりに動作し、新たな問題が発生していないことを確認できます。
-
-### 2. 指示の正確な遵守
-
-- **問題点:** 指示を正確に守らないと、タスクが不完全になったり、誤った結果になったりする可能性があります。
-- **例:** タスクの指示に記載されたテスト実行を明示的に行わなかったため、`test_datasets_page.py` の `NameError` を見逃しました。
-- **解決策:** 指示を注意深く読み、タスクを開始する前にすべての要件を理解していることを確認してください。不明な点があれば、必ず質問して明確にしてください。
-
-### 3. 行動の明示的な記述
-
-- **問題点:** 特にテストに関して、どのような行動をとったかを明示的に記述しないと、**指示者**との間で誤解が生じる可能性があります。
-- **例:** インデント修正後にテストを実行したことを明示的に記述しなかったため、**指示者**にテストを実行していないと誤解されました。
-- **解決策:** 特にテストに関しては、どのような行動をとったかを明示的に記述してください。これにより、**指示者**は進捗状況を把握でき、手順の抜け漏れを防ぐことができます。
-
-### 4. 細部への注意
-
-- **問題点:** インデントや import 文などの小さな詳細を見落とすと、重大なエラーにつながる可能性があります。
-- **例:** `test_datasets_page.py` に `import allure` 文を追加し忘れたり、インデントが間違っていたりしたため、テストが失敗しました。
-- **解決策:** 細部に注意を払い、次のステップに進む前に、自分の作業を再確認してください。これには、すべての変更が正しいこと、コードが適切にフォーマットされていること、すべてのテストがパスすることを確認することが含まれます。
-
-### 5. ミスからの学習
-
-- **問題点:** 同じミスを繰り返すと、進捗が妨げられ、効率が低下します。
-- **例:** テストや import 文の記述に関するミスを繰り返してしまいましたが、過去のミスから学んでいれば、これらのミスは防げたはずです。
-- **解決策:** ミスを学習の機会として捉え、将来的に同じミスを繰り返さないように努めてください。過去のやり取りを振り返り、改善すべき点を見つけましょう。
-
-### 6. 指示者の意図の理解
-
-- **問題点:** **指示者**の意図を推測すると、誤った目標に向かって作業してしまう可能性があります。
-- **例:** テスト実行を**指示者**が把握しているだろうと推測してしまったため、誤解が生じました。
-- **解決策:** タスクを開始する前に、**指示者**の意図とタスクの背景を完全に理解するように努めてください。不明な点があれば、必ず質問して明確にしてください。
 - **解決策:** タスクを開始する前に、**指示者**の意図とタスクの背景を完全に理解するように努めてください。不明な点があれば、必ず質問して明確にしてください。

@@ -1,67 +1,63 @@
 from playwright.async_api import Page
+
+from .base_page import BasePage
+from .locators import HomePageLocators
 from .models_page import ModelsPage
 from .spaces_page import SpacesPage
 from .datasets_page import DatasetsPage
 
-class HomePage:
+class HomePage(BasePage):
     def __init__(self, page: Page):
         self.page = page
-        self.models_tab = page.locator('nav a[href="/models"]')
+        self.models_tab = page.locator(HomePageLocators.MODELS_TAB)
 
     async def click_models_tab(self):
         await self.models_tab.click()
-        await self.page.wait_for_load_state()
         return ModelsPage(self.page)
 
     @property
     def datasets_tab(self):
-        return self.page.locator('nav a[href="/datasets"]')
+        return self.page.locator(HomePageLocators.DATASETS_TAB)
 
     async def click_datasets_tab(self):
         await self.datasets_tab.click()
-        await self.page.wait_for_load_state()
         return DatasetsPage(self.page)
 
     @property
     def spaces_tab(self):
-        return self.page.locator('nav a[href="/spaces"]')
+        return self.page.locator(HomePageLocators.SPACES_TAB)
 
     async def click_spaces_tab(self):
         await self.spaces_tab.click()
-        await self.page.wait_for_load_state()
         return SpacesPage(self.page)
 
     @property
     def posts_tab(self):
-        return self.page.locator('nav a[href="/posts"]')
+        return self.page.locator(HomePageLocators.POSTS_TAB)
 
     async def click_posts_tab(self):
         await self.posts_tab.click()
-        await self.page.wait_for_load_state()
 
     @property
     def docs_tab(self):
-        return self.page.locator('nav a[href="/docs"]')
+        return self.page.locator(HomePageLocators.DOCS_TAB)
 
     async def click_docs_tab(self):
         await self.docs_tab.click()
-        await self.page.wait_for_load_state()
 
     @property
     def enterprise_tab(self):
-        return self.page.locator('nav a[href="/enterprise"]')
+        return self.page.locator(HomePageLocators.ENTERPRISE_TAB)
 
     async def click_enterprise_tab(self):
         await self.enterprise_tab.click()
-        await self.page.wait_for_load_state()
 
     @property
     def pricing_tab(self):
-        return self.page.locator('nav a[href="/pricing"]')
+        return self.page.locator(HomePageLocators.PRICING_TAB)
 
     async def click_pricing_tab(self):
         await self.pricing_tab.click()
-        await self.page.wait_for_load_state()
 
     async def navigate_to_models_page(self):
         await self.click_models_tab()
