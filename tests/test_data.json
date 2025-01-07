@@ -1,0 +1,16 @@
+{
+  "home_page_tabs": [
+    {
+      "tab_name": "models",
+      "expected_title": "Models"
+    },
+    {
+      "tab_name": "datasets",
+      "expected_title": "Datasets"
+    },
+    {
+      "tab_name": "spaces",
+      "expected_title": "Spaces"
+    }
+  ]
+}
