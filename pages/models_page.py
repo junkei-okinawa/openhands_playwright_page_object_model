@@ -1,24 +1,27 @@
 from playwright.async_api import Page
 
-class ModelsPage:
+from .base_page import BasePage
+from .locators import ModelsPageLocators
+
+class ModelsPage(BasePage):
     def __init__(self, page: Page):
         self.page = page
-        self.title = page.locator('h1')
+        self.title = page.locator(ModelsPageLocators.TITLE)
 
     async def get_title_text(self):
         return await self.title.inner_text()
 
     @property
     def search_box(self):
-        return self.page.locator('input[placeholder^="Search models"]')
+        return self.page.locator(ModelsPageLocators.SEARCH_BOX)
 
     @property
     def see_all_model_results_for_element(self):
-        return self.page.locator('xpath=//li/a/span[contains(text(),"model results for")]')
+        return self.page.locator(ModelsPageLocators.SEE_ALL_MODEL_RESULTS_FOR_ELEMENT)
 
     @property
     def filter_by_name_box(self):
-        return self.page.locator('input[placeholder="Filter by name"]')
+        return self.page.locator(ModelsPageLocators.FILTER_BY_NAME_BOX)
 
     async def search_models(self, keyword):
         await self.search_box.wait_for(state="visible")
@@ -31,7 +34,7 @@ class ModelsPage:
 
     @property
     def first_model_card_title(self):
-        return self.page.locator('article:first-child h4')
+        return self.page.locator(ModelsPageLocators.FIRST_MODEL_CARD_TITLE)
 
     async def get_first_model_card_title_text(self):
         return await self.first_model_card_title.inner_text()

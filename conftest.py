@@ -1,14 +1,16 @@
-import os
 import sys
-import asyncio
-from typing import Dict
+import json
 from pathlib import Path
 
 import allure
 import pytest
 from playwright.async_api import async_playwright, Browser, BrowserContext, Page
 
+from pages.home_page import HomePage
+
+
 sys.path.insert(0, str(Path(__file__).parent))
+
 
 @pytest.fixture(scope="function")
 async def browser():
@@ -16,6 +18,7 @@ async def browser():
         browser = await p.chromium.launch()
         yield browser
         await browser.close()
+
 
 @pytest.fixture
 async def context(request, browser: Browser, tmpdir_factory: pytest.TempdirFactory):
@@ -36,6 +39,17 @@ async def page(request, context: BrowserContext, base_url: str):
     await page.close()
 
 
+@pytest.fixture
+async def home_page(page: Page):
+    return HomePage(page)
+
+
+@pytest.fixture
+def test_data():
+    with open("tests/test_data.json", "r") as f:
+        return json.load(f)
+
+
 def pytest_runtest_makereport(item, call):
     if "page" in item.fixturenames:  # page フィクスチャを使用しているテストのみ処理
         if call.when == "call":
@@ -45,13 +59,11 @@ def pytest_runtest_makereport(item, call):
             if item.excinfo:
                 # テストが失敗した場合の処理
                 if hasattr(item, '_context_video_path') and item._context_video_path:
-                    print(f"レポートに動画を添付します")
                     try:
                         allure.attach.file(
                             item._context_video_path,
                             name=f"{item.name}-video-on-failure",
                             attachment_type=allure.attachment_type.WEBM
                         )
-                        print(f"動画の添付に成功しました")
                     except Exception as e:
-                        print(f"動画添付中にエラー: {e}")
+                        print(f"Error while attaching video: {e}")
