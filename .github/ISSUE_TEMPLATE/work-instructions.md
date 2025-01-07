@@ -14,8 +14,8 @@ assignees: ''
 ## 優先実施事項
 Taskの実行前に以下を必ず実施すること
 
-- [ ] 作業ディレクトリ`/workspace/<workdir>`に移動する
-- [ ] `/workspace/<workdir>/todays_instructions.md`を作成し、この issue 内容を記載する
+- [ ] 作業ディレクトリ`/workspace/<Already exists work directory> `に移動する
+- [ ] `/workspace/<Already exists work directory>/todays_instructions.md`を作成し、この issue 内容を記載する
 - [ ] `README.md`と`openhands_instructions`を確認しプロジェクトの内容とルール、ナレッジを理解する。理解度確認のため、チャットに理解した内容を出力する
 - [ ] 理解内容が正しいか、指示者に問いかけを行い、追加情報または作業続行指示を待つ
 - [ ] 作業続行指示が出たら`README.md`に記載のSetupを完了する
@@ -48,5 +48,5 @@ Taskの実行前に以下を必ず実施すること
 9. [ ] `README.md`に記載の実行方法でテストを行う。テストで不備があれば修正し再テストを行う。不備が全て解消するまで修正→テストを繰り返す。どうしても解決できない問題がある場合は指示者にヘルプを求め追加指示を待つ。
 10. [ ] `README.md`を確認し、タスクの実施に伴う更新が必要な場合は、プロジェクトの最新状態を説明できる内容に修正する。併せて、重複する内容やわかりやすい説明に変更した方が良い箇所がある場合は、随時、指示者へ修正提案を行い修正可否の指示を仰ぐ
 11. [ ] `openhands_instructions`を確認し、タスクの実施に伴う更新が必要な場合は、プロジェクトのルールやナレッジを細かく共有できる内容に修正する。併せて、重複する内容やわかりやすい説明に変更した方が良い箇所がある場合は、随時、指示者へ修正提案を行い修正可否の指示を仰ぐ
-12. [ ] `/workspace/<workdir>/todays_instructions.md`を削除する
+12. [ ] `/workspace/<Already exists work directory>/todays_instructions.md`を削除する
 13. [ ] 変更内容をpushしPRを作成する。commit message にはこのissueと紐付けを行うため、issue no を記載すること。作成用のURLと`Github API`を使用してPRの作成を実行し、作成されたPRのURLをチャットで知らせる
