@@ -48,7 +48,7 @@
 
    仮想環境内のパッケージを使用する場合は、`.venv/bin/pytest` のように直接パスを指定して実行する必要があります。
    ```bash
-   .venv/bin/pytest --cov --alluredir=allure-results
+   uv run pytest --cov --alluredir=allure-results
    ```
 
 5. allure レポートを確認

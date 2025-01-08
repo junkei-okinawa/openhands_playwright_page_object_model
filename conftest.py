@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 @pytest.fixture(scope="function")
 async def browser():
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
+        browser = await p.chromium.launch(headless=True)
         yield browser
         await browser.close()
 
@@ -53,9 +53,14 @@ def test_data():
 def pytest_runtest_makereport(item, call):
     if "page" in item.fixturenames:  # page フィクスチャを使用しているテストのみ処理
         if call.when == "call":
+            print("""call.when == "call" """)
             # teardown時にテストの失敗を判定できるようにitem(node)にexcinfoを格納
             item.excinfo = call.excinfo
         elif call.when == "teardown":
+            print("""call.when == "teardown" """)
+            print(f"hasattr(item, '_context_video_path'): {hasattr(item, '_context_video_path')}")
+            print(F"item._context_video_path: {item._context_video_path}")
+            print(f"item.excinfo: {item.excinfo}")
             if item.excinfo:
                 # テストが失敗した場合の処理
                 if hasattr(item, '_context_video_path') and item._context_video_path:
@@ -66,4 +71,4 @@ def pytest_runtest_makereport(item, call):
                             attachment_type=allure.attachment_type.WEBM
                         )
                     except Exception as e:
-                        print(f"Error while attaching video: {e}")
+                        allure.attach(f"Error while attaching video: {e}")
