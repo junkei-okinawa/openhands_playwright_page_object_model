@@ -1,0 +1,522 @@
+/workspace/openhands_playwright_page_object_model/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:207: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.12.8, pytest-8.3.4, pluggy-1.5.0
+baseurl: https://huggingface.co/
+rootdir: /workspace/openhands_playwright_page_object_model
+configfile: pytest.ini
+testpaths: tests
+plugins: allure-pytest-2.13.5, base-url-2.1.0, asyncio-0.25.0, cov-6.0.0
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=None
+collected 11 items
+
+tests/test_datasets_page.py F                                            [  9%]
+tests/test_home_page.py FFFFFFFF                                         [ 81%]
+tests/test_models_page.py FF                                             [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_datasets_page_title ___________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff89054380>
+
+    @pytest.mark.asyncio
+    async def test_datasets_page_title(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       datasets_page = await home_page.click_datasets_tab()
+
+tests/test_datasets_page.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:23: in click_datasets_tab
+    await self.datasets_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff89aeede0>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88fffec0>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/datasets\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+____________________________ test_click_models_tab _____________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88f56f30>
+test_data = {'home_page_tabs': [{'expected_title': 'Models', 'tab_name': 'models'}, {'expected_title': 'Datasets', 'tab_name': 'datasets'}, {'expected_title': 'Spaces', 'tab_name': 'spaces'}]}
+
+    @pytest.mark.asyncio
+    async def test_click_models_tab(home_page: HomePage, test_data):
+        await home_page.goto("https://huggingface.co/")
+        tab_data = next(tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "models")
+>       models_page = await home_page.click_models_tab()
+
+tests/test_home_page.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:15: in click_models_tab
+    await self.models_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff88f54260>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88f08a40>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/models\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+___________________________ test_click_datasets_tab ____________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88f073e0>
+test_data = {'home_page_tabs': [{'expected_title': 'Models', 'tab_name': 'models'}, {'expected_title': 'Datasets', 'tab_name': 'datasets'}, {'expected_title': 'Spaces', 'tab_name': 'spaces'}]}
+
+    @pytest.mark.asyncio
+    async def test_click_datasets_tab(home_page: HomePage, test_data):
+        await home_page.goto("https://huggingface.co/")
+        tab_data = next(tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "datasets")
+>       datasets_page = await home_page.click_datasets_tab()
+
+tests/test_home_page.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:23: in click_datasets_tab
+    await self.datasets_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff88f546e0>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88f41c60>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/datasets\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+____________________________ test_click_spaces_tab _____________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88f69760>
+test_data = {'home_page_tabs': [{'expected_title': 'Models', 'tab_name': 'models'}, {'expected_title': 'Datasets', 'tab_name': 'datasets'}, {'expected_title': 'Spaces', 'tab_name': 'spaces'}]}
+
+    @pytest.mark.asyncio
+    async def test_click_spaces_tab(home_page: HomePage, test_data):
+        await home_page.goto("https://huggingface.co/")
+        tab_data = next(tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "spaces")
+>       spaces_page = await home_page.click_spaces_tab()
+
+tests/test_home_page.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:31: in click_spaces_tab
+    await self.spaces_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff88f51f70>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88dd4900>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/spaces\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+_____________________________ test_click_posts_tab _____________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88ddcf20>
+
+    @pytest.mark.asyncio
+    async def test_click_posts_tab(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       await home_page.click_posts_tab()
+
+tests/test_home_page.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:39: in click_posts_tab
+    await self.posts_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff88e61490>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff89088ae0>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/posts\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+_____________________________ test_click_docs_tab ______________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88e08260>
+
+    @pytest.mark.asyncio
+    async def test_click_docs_tab(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       await home_page.click_docs_tab()
+
+tests/test_home_page.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:46: in click_docs_tab
+    await self.docs_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff88e408f0>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff8bba2ac0>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/docs\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+__________________________ test_click_enterprise_tab ___________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88f569f0>
+
+    @pytest.mark.asyncio
+    async def test_click_enterprise_tab(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       await home_page.click_enterprise_tab()
+
+tests/test_home_page.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:53: in click_enterprise_tab
+    await self.enterprise_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff88e0a930>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88e93880>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/enterprise\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+____________________________ test_click_pricing_tab ____________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88e0a630>
+
+    @pytest.mark.asyncio
+    async def test_click_pricing_tab(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       await home_page.click_pricing_tab()
+
+tests/test_home_page.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:60: in click_pricing_tab
+    await self.pricing_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff883083e0>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff883119e0>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/pricing\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+______________________________ test_failing_test _______________________________
+
+page = <Page url='https://huggingface.co/'>
+
+    @pytest.mark.asyncio
+    async def test_failing_test(page: Page):
+>       assert await page.title() == "Wrong Title"
+E       AssertionError: assert 'Hugging Face...g the future.' == 'Wrong Title'
+E         
+E         - Wrong Title
+E         + Hugging Face – The AI community building the future.
+
+tests/test_home_page.py:62: AssertionError
+_________________________ test_navigate_to_models_page _________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff8828e840>
+
+    @pytest.mark.asyncio
+    async def test_navigate_to_models_page(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       models_page = await home_page.navigate_to_models_page()
+
+tests/test_models_page.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:63: in navigate_to_models_page
+    await self.click_models_tab()
+pages/home_page.py:15: in click_models_tab
+    await self.models_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff8824f9b0>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88c29da0>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/models\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+______________________________ test_search_models ______________________________
+
+home_page = <pages.home_page.HomePage object at 0xffff88c35070>
+
+    @pytest.mark.asyncio
+    async def test_search_models(home_page: HomePage):
+        await home_page.goto("https://huggingface.co/")
+>       models_page = await home_page.navigate_to_models_page()
+
+tests/test_models_page.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pages/home_page.py:63: in navigate_to_models_page
+    await self.click_models_tab()
+pages/home_page.py:15: in click_models_tab
+    await self.models_tab.click()
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:15398: in click
+    await self._impl_obj.click(
+.venv/lib/python3.12/site-packages/playwright/_impl/_locator.py:156: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:488: in click
+    await self._channel.send("click", locals_to_params(locals()))
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0xffff8824ce90>
+cb = <function Channel.send.<locals>.<lambda> at 0xffff88c0fec0>
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("//nav/a[@href=\"/models\"]")
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:528: TimeoutError
+
+---------- coverage: platform linux, python 3.12.8-final-0 -----------
+Name                          Stmts   Miss  Cover
+-------------------------------------------------
+conftest.py                      47      2    96%
+pages/base_page.py                9      1    89%
+pages/datasets_page.py           14      5    64%
+pages/home_page.py               49      5    90%
+pages/locators.py                19      0   100%
+pages/models_page.py             31     15    52%
+pages/spaces_page.py              9      3    67%
+tests/test_datasets_page.py      11      2    82%
+tests/test_home_page.py          45      6    87%
+tests/test_models_page.py        17      4    76%
+-------------------------------------------------
+TOTAL                           251     43    83%
+
+=========================== short test summary info ============================
+FAILED tests/test_datasets_page.py::test_datasets_page_title - playwright._im...
+FAILED tests/test_home_page.py::test_click_models_tab - playwright._impl._err...
+FAILED tests/test_home_page.py::test_click_datasets_tab - playwright._impl._e...
+FAILED tests/test_home_page.py::test_click_spaces_tab - playwright._impl._err...
+FAILED tests/test_home_page.py::test_click_posts_tab - playwright._impl._erro...
+FAILED tests/test_home_page.py::test_click_docs_tab - playwright._impl._error...
+FAILED tests/test_home_page.py::test_click_enterprise_tab - playwright._impl....
+FAILED tests/test_home_page.py::test_click_pricing_tab - playwright._impl._er...
+FAILED tests/test_home_page.py::test_failing_test - AssertionError: assert 'H...
+FAILED tests/test_models_page.py::test_navigate_to_models_page - playwright._...
+FAILED tests/test_models_page.py::test_search_models - playwright._impl._erro...
+======================== 11 failed in 317.61s (0:05:17) ========================
