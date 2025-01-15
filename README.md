@@ -46,12 +46,12 @@
 
 4. テストを実行します。
 
-   仮想環境内のパッケージを使用する場合は、`.venv/bin/pytest` のように直接パスを指定して実行する必要があります。
+   仮想環境内のパッケージを使用する場合は、`uv run <package name>` のように実行します。
    ```bash
    uv run pytest --cov --alluredir=allure-results
    ```
 
-5. allure レポートを確認
+5. allure レポートを確認。allure はNo3でバイナリを直接インストールしているので`uv run`は必要ありません。
    ```bash
    allure serve allure-results > allure.log 2>&1 &
    ```
@@ -73,10 +73,3 @@
 ベースとなる指示は本プロジェクトの`issue`ページの**New issue**から**work instructions**テンプレートを使って設定し、フロントエンド画面のチャットで「Github APIを使用してissue#00(番号を記載)を確認し実施せよ」と指示することで、自律的に開発が進みます。
 
 この`README.md`も大半は AI Agent が作成したものです。
-
-#### 考慮事項
-OpenHandsが内部的に使用しているファイル編集機能がうまく機能しないことが多く、ファイル編集に失敗したり、重複する内容を入力することが多いです。うまく編集できないことに AI Agent も苛立ちを隠していません(笑)
-
-完全自律ではファイル編集で何度も失敗し頑張ってリトライし続けてしまうことが多いので、適宜 人の介入は必要です。
-
-[OpenHands]((https://github.com/All-Hands-AI/OpenHands)) の内部実装を確認したところ`function calling` を独自実装しているので、改善してPRを送ろうと思います。
