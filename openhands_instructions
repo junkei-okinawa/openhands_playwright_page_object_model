@@ -126,178 +126,117 @@ note:
 ### 1. `str_replace_editor` の挙動に関する注意点
 *   **`str_replace_editor` の制限事項**: `str_replace_editor` は、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
     *   `str_replace_editor` の `create` コマンドは、内部で `\` をエスケープしてしまうため、ファイル作成時に構文エラーが発生する場合があります。
-    *   `str_replace_editor` の `str_replace` コマンドは、複数行にわたる編集や、複雑なパターンでの編集が難しい場合があります。
+    *   `str_replace_editor` の `str_replace` コマンドは、以下の制限があります。
+        *   `old_str` はファイル内の文字列と完全に一致する必要があります。
+        *   複数行の削除はできません。`new_str` に空文字列を指定しても、行は削除されず空行として残ります。
+        *   存在しない文字列の置換を試みてもエラーは発生しません。
+*   **`str_replace_editor` の `insert` コマンド**:
+    *   指定した行の後に新しい行を挿入できます。
+*   **`str_replace_editor` の `undo_edit` コマンド**:
+    *   最後の編集操作を取り消すことができます。
 
-**事例:**
-
-`datasets_page.py` を作成する際、`str_replace_editor` の `create` コマンドで以下のコードを作成しようとしたケースがありました。
-
-作成したいファイル内容:
-```python
-import pytest
-import asyncio
-from playwright.async_api import async_playwright, Page
-
-from pages.home_page import HomePage
-from pages.datasets_page import DatasetsPage
-
-@pytest.mark.asyncio
-async def test_datasets_page_title():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-        home_page = HomePage(page)
-        await page.goto("https://huggingface.co/")
-        datasets_page = await home_page.click_datasets_tab()
-        title_text = await datasets_page.get_title_text()
-        assert title_text == "Datasets"
-
-async def main():
-    await test_datasets_page_title()
-
-if __name__ == '__main__':
-    asyncio.run(main())
+**`test_edit.txt` の編集パターンと結果**
 
 ```
-
-実行コマンドの失敗例:
-
-```bash
-str_replace_editor --command create --path /workspace/openhands_playwright_page_object_model/tests/test_datasets_page.py --file_text "import pytest\\nimport asyncio\\nfrom playwright.async_api import async_playwright, Page\\n\\nfrom pages.home_page import HomePage\\nfrom pages.datasets_page import DatasetsPage\\n\\n@pytest.mark.asyncio\\nasync def test_datasets_page_title():\\n    async with async_playwright() as p:\\n        browser = await p.chromium.launch()\\n        page = await browser.new_page()\\n        home_page = HomePage(page)\\n        await page.goto(\\\"https://huggingface.co/\\\")\\n        datasets_page = await home_page.click_datasets_tab()\\n        title_text = await datasets_page.get_title_text()\\n        assert title_text == \\\"Datasets\\\"\\n\\nasync def main():\\n    await test_datasets_page_title()\\n\\nif __name__ == \'__main__\':\\n    asyncio.run(main())\\n"
+This is the first line.
+This is the second line.
+This is the third line.
+This is the fourth line with "quotes".
+This is the fifth line with 'single quotes'.
+This is the sixth line with backslash \\.
+This is the seventh line with a very long string that should not cause any issues with the str_replace command. This is a very long string that should not cause any issues with the str_replace command. This is a very long string that should not cause any issues with the str_replace command.
+This is the eighth line.
+This is the ninth line.
+This is the tenth line.
 ```
 
-作成されたファイル:
+#### 編集パターンと結果
 
-```python
-import pytest\nimport asyncio\nfrom playwright.async_api import async_playwright, Page\n\nfrom pages.home_page import HomePage\nfrom pages.datasets_page import DatasetsPage\n\n@pytest.mark.asyncio\nasync def test_datasets_page_title():\n    async with async_playwright() as p:\n        browser = await p.chromium.launch()\n        page = await browser.new_page()\n        home_page = HomePage(page)\n        await page.goto(\"https://huggingface.co/\")\n        datasets_page = await home_page.click_datasets_tab()\n        title_text = await datasets_page.get_title_text()\n        assert title_text == \"Datasets\"\n\nasync def main():\n    await test_datasets_page_title()\n\nif __name__ == '__main__':\n    asyncio.run(main())\n
-```
+##### 1. 単一行の置換
 
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command str_replace --path /workspace/test_edit.txt --old_str "This is the second line." --new_str "This is the modified second line."
+    ```
+-   **結果:**
+    -   `This is the second line.` が `This is the modified second line.` に置換された。
+-   **成功**
 
-本来、`\n` は改行文字、`\` はエスケープ文字として解釈されるべきですが、それぞれ `\\n`、`\\` とエスケープされてしまいました。その結果、Python コードとして解釈できず `SyntaxError` が発生しました。
+##### 2. 特殊文字を含む行の置換
 
-**教訓:**
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command str_replace --path /workspace/test_edit.txt --old_str "This is the fourth line with \\"quotes\\"." --new_str "This is the modified fourth line with \\\"quotes\\\".
+    ```
+-   **結果:**
+    -   `This is the fourth line with "quotes".` が `This is the modified fourth line with \"quotes\".` に置換された。
+-   **成功**
 
-`str_replace_editor` は、文字列を挿入する際に `\` をエスケープする仕様があります。この挙動を十分に理解せずに使用すると、意図しないエスケープが発生し、エラーの原因となる可能性があります。特に複数行にわたるコードや特殊文字を含む文字列を挿入する際には注意が必要です。
+##### 3. 複数行の置換
 
-*  **改行コードはエスケープしない:**  `str_replace_editor` で改行コードを挿入する際は、`\n` をエスケープせずにそのまま記述する。
-    *  **誤りの具体例:**
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command str_replace --path /workspace/test_edit.txt --old_str "This is the fifth line with 'single quotes'.\nThis is the sixth line with backslash \\." --new_str "This is the modified fifth line with \'single quotes\'.\nThis is the modified sixth line with backslash \\\\."
+    ```
+-   **結果:**
+    -   複数行が正しく置換された。
+-   **成功**
 
-        `\\n`
+##### 4. 存在しない文字列の置換
 
-    *  **正しい具体例:**
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command str_replace --path /workspace/test_edit.txt --old_str "This is a non-existent line." --new_str "This is a new line."
+    ```
+-   **結果:**
+    -   エラーは発生せず、何も変更されなかった。
+-   **成功 (ただし、何も変更されない)**
 
-        `\n`
+##### 5. 長い行の置換
 
-*  **クォーテーション`"`, `'` はエスケープする:**  クォーテーションを含む文字列を挿入する際は、クォーテーションを`\"`, `\'`のようにエスケープする。'
-    *  **誤りの具体例:**
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command str_replace --path /workspace/test_edit.txt --old_str "This is the seventh line with a very long string that should not cause any issues with the str_replace command. This is a very long string that should not cause any issues with the str_replace command. This is a very long string that should not cause any issues with the str_replace command." --new_str "This is the modified seventh line with a very long string."
+    ```
+-   **結果:**
+    -   長い行が正しく置換された。
+-   **成功**
 
-        `\\\"`
+##### 6. 複数行の削除 (失敗)
 
-    *  **正しい具体例:**
+-   **コマンド:**
+    ```bash
+     str_replace_editor --command str_replace --path /workspace/test_edit.txt --old_str "This is the eighth line.\nThis is the ninth line." --new_str ""
+    ```
+-   **結果:**
+    -   複数行が削除されず、空行として残った。
+-   **失敗**
 
-        `\"`
+##### 7. 行の挿入
 
-""
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command insert --path /workspace/test_edit.txt --insert_line 2 --new_str "This is the inserted line."
+    ```
+-   **結果:**
+    -   指定した行の後に新しい行が挿入された。
+-   **成功**
 
-**改善の具体例:**
+##### 8. 編集の取り消し
 
-作成したいファイル内容:
-```python
-import pytest
-import asyncio
-from playwright.async_api import async_playwright, Page
+-   **コマンド:**
+    ```bash
+    str_replace_editor --command undo_edit --path /workspace/test_edit.txt
+    ```
+-   **結果:**
+    -   最後の編集操作が取り消された。
+-   **成功**
 
-from pages.home_page import HomePage
-from pages.datasets_page import DatasetsPage
+#### まとめ
 
-@pytest.mark.asyncio
-async def test_datasets_page_title():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-        home_page = HomePage(page)
-        await page.goto("https://huggingface.co/")
-        datasets_page = await home_page.click_datasets_tab()
-        title_text = await datasets_page.get_title_text()
-        assert title_text == "Datasets"
-
-async def main():
-    await test_datasets_page_title()
-
-if __name__ == '__main__':
-    asyncio.run(main())
-
-```
-
-実行コマンドの改善例:
-
-```bash
-str_replace_editor --command create --path /workspace/openhands_playwright_page_object_model/tests/test_datasets_page.py --file_text "import pytest\nimport asyncio\nfrom playwright.async_api import async_playwright, Page\n\nfrom pages.home_page import HomePage\nfrom pages.datasets_page import DatasetsPage\n\n@pytest.mark.asyncio\nasync def test_datasets_page_title():\n    async with async_playwright() as p:\n        browser = await p.chromium.launch()\n        page = await browser.new_page()\n        home_page = HomePage(page)\n        await page.goto(\"https://huggingface.co/\")\n        datasets_page = await home_page.click_datasets_tab()\n        title_text = await datasets_page.get_title_text()\n        assert title_text == \"Datasets\"\n\nasync def main():\n    await test_datasets_page_title()\n\nif __name__ == \'__main__\':\n    asyncio.run(main())\n"
-```
-
-作成されたファイル内容:
-
-```python
-import pytest
-import asyncio
-from playwright.async_api import async_playwright, Page
-
-from pages.home_page import HomePage
-from pages.datasets_page import DatasetsPage
-
-@pytest.mark.asyncio
-async def test_datasets_page_title():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-        home_page = HomePage(page)
-        await page.goto("https://huggingface.co/")
-        datasets_page = await home_page.click_datasets_tab()
-        title_text = await datasets_page.get_title_text()
-        assert title_text == "Datasets"
-
-async def main():
-    await test_datasets_page_title()
-
-if __name__ == '__main__':
-    asyncio.run(main())
-
-```
-
-## チーム開発での教訓
-
-### 1. テストの徹底的な実施の重要性
-
-- **問題点:** 変更を加えた後、特にバグ修正後にテストを実行しないと、リグレッションが発生したり、エラーを見逃したりする可能性があります。
-- **例:** `test_datasets_page.py` のインデントを修正した後、テストを再実行しなかったため、`import allure` 文を追加し忘れたことによる `NameError` が発生しました。
-- **解決策:** どんなに小さな変更でも、変更を加えた後は必ずテストを実行してください。これにより、コードが期待どおりに動作し、新たな問題が発生していないことを確認できます。
-
-### 2. 指示の正確な遵守
-
-- **問題点:** 指示を正確に守らないと、タスクが不完全になったり、誤った結果になったりする可能性があります。
-- **例:** タスクの指示に記載されたテスト実行を明示的に行わなかったため、`test_datasets_page.py` の `NameError` を見逃しました。
-- **解決策:** 指示を注意深く読み、タスクを開始する前にすべての要件を理解していることを確認してください。不明な点があれば、必ず質問して明確にしてください。
-
-### 3. 行動の明示的な記述
-
-- **問題点:** 特にテストに関して、どのような行動をとったかを明示的に記述しないと、**指示者**との間で誤解が生じる可能性があります。
-- **例:** インデント修正後にテストを実行したことを明示的に記述しなかったため、**指示者**にテストを実行していないと誤解されました。
-- **解決策:** 特にテストに関しては、どのような行動をとったかを明示的に記述してください。これにより、**指示者**は進捗状況を把握でき、手順の抜け漏れを防ぐことができます。
-
-### 4. 細部への注意
-
-- **問題点:** インデントや import 文などの小さな詳細を見落とすと、重大なエラーにつながる可能性があります。
-- **例:** `test_datasets_page.py` に `import allure` 文を追加し忘れたり、インデントが間違っていたりしたため、テストが失敗しました。
-- **解決策:** 細部に注意を払い、次のステップに進む前に、自分の作業を再確認してください。これには、すべての変更が正しいこと、コードが適切にフォーマットされていること、すべてのテストがパスすることを確認することが含まれます。
-
-### 5. ミスからの学習
-
-- **問題点:** 同じミスを繰り返すと、進捗が妨げられ、効率が低下します。
-- **例:** テストや import 文の記述に関するミスを繰り返してしまいましたが、過去のミスから学んでいれば、これらのミスは防げたはずです。
-- **解決策:** ミスを学習の機会として捉え、将来的に同じミスを繰り返さないように努めてください。過去のやり取りを振り返り、改善すべき点を見つけましょう。
-
-### 6. 指示者の意図の理解
-
-- **問題点:** **指示者**の意図を推測すると、誤った目標に向かって作業してしまう可能性があります。
-- **例:** テスト実行を**指示者**が把握しているだろうと推測してしまったため、誤解が生じました。
-- **解決策:** タスクを開始する前に、**指示者**の意図とタスクの背景を完全に理解するように努めてください。不明な点があれば、必ず質問して明確にしてください。
+-   `str_replace_editor` は、単一行、複数行、特殊文字を含む文字列の置換を正しく行うことができる。
+-   `str_replace_editor` は、存在しない文字列の置換を試みてもエラーは発生しない。
+-   `str_replace_editor` は、長い行の置換も正しく行うことができる。
+-   `str_replace_editor` では、複数行の削除はできない。
+-   `str_replace_editor` は、指定した行の後に新しい行を挿入できる。
+-   `str_replace_editor` は、最後の編集操作を取り消すことができる。
