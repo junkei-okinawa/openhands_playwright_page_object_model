@@ -16,7 +16,7 @@ Taskの実行前に以下を必ず実施すること
 
 - [ ] 作業ディレクトリ`/workspace/<Already exists work directory> `に移動する
 - [ ] `/workspace/<Already exists work directory>/todays_instructions.md`を作成し、この issue 内容を記載する
-- [ ] `README.md`と`openhands_instructions`を確認しプロジェクトの内容とルール、ナレッジを理解する。理解度確認のため、チャットに理解した内容を出力する
+- [ ] `README.md`と`openhands_instructions`、`file_editor_document.md`を確認しプロジェクトの内容とルール、ナレッジを理解する。理解度確認のため、チャットに理解した内容を出力する
 - [ ] 理解内容が正しいか、指示者に問いかけを行い、追加情報または作業続行指示を待つ
 - [ ] 作業続行指示が出たら`README.md`に記載のSetupを完了する
 
