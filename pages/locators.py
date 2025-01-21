@@ -20,3 +20,13 @@ class DatasetsPageLocators:
 
 class SpacesPageLocators:
     TITLE = '''xpath=//h1'''
+
+class PostsPageLocators:
+    TITLE = '''xpath=//h1'''
+    PAGE_TITLE = '''xpath=//h1'''
+
+class DocsPageLocators:
+    TITLE = '''xpath=//h1'''
+
+class EnterprisePageLocators:
+    TITLE = '''xpath=//h1'''
