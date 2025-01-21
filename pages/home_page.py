@@ -6,6 +6,7 @@ from .models_page import ModelsPage
 from .spaces_page import SpacesPage
 from .datasets_page import DatasetsPage
 
+
 class HomePage(BasePage):
     def __init__(self, page: Page):
         self.page = page
@@ -62,4 +63,5 @@ class HomePage(BasePage):
     async def navigate_to_models_page(self):
         await self.click_models_tab()
         from .models_page import ModelsPage
+
         return ModelsPage(self.page)

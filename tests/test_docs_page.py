@@ -3,6 +3,7 @@ from playwright.sync_api import Page
 
 from pages.docs_page import DocsPage
 
+
 @pytest.mark.asyncio
 @pytest.mark.docs
 async def test_docs_page_title(page: Page, base_url):

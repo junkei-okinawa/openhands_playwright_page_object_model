@@ -17,7 +17,6 @@ from pages.datasets_page import DatasetsPage
 async def test_datasets_page_title(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
-    with allure.step("Click the Datasets tab"):
     with allure.step("Verify the title of the Datasets page"):
         title_text = await datasets_page.get_title_text()
         assert title_text == "Datasets"

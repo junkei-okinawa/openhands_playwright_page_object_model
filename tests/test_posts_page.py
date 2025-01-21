@@ -1,10 +1,9 @@
-
-
 import pytest
 
 from playwright.sync_api import Page
 
 from pages.posts_page import PostsPage
+
 
 @pytest.mark.asyncio
 @pytest.mark.posts

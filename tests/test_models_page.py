@@ -11,7 +11,9 @@ from pages.home_page import HomePage
 @allure.epic("Models Page Tests")
 @allure.feature("Navigation")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("This test verifies that navigating to the Models page displays the correct title.")
+@allure.description(
+    "This test verifies that navigating to the Models page displays the correct title."
+)
 @allure.id("10")
 async def test_navigate_to_models_page(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
@@ -27,7 +29,9 @@ async def test_navigate_to_models_page(home_page: HomePage):
 @allure.epic("Models Page Tests")
 @allure.feature("Search")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("This test verifies that searching for models displays the correct filter.")
+@allure.description(
+    "This test verifies that searching for models displays the correct filter."
+)
 @allure.id("11")
 async def test_search_models(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
