@@ -42,4 +42,4 @@ class EnterprisePageLocators:
     TITLE = """xpath=//h1"""
 
 class PricingPageLocators:
-    pass
+    TITLE = """xpath=//h1"""
