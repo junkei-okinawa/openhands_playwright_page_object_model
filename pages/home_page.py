@@ -1,10 +1,10 @@
 from playwright.async_api import Page
 
 from .base_page import BasePage
+from .datasets_page import DatasetsPage
 from .locators import HomePageLocators
 from .models_page import ModelsPage
 from .spaces_page import SpacesPage
-from .datasets_page import DatasetsPage
 
 
 class HomePage(BasePage):

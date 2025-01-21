@@ -47,9 +47,22 @@
    ```
 
 4. テストを実行します。
-
-   仮想環境内のパッケージを使用する場合は、`uv run <package name>` のように実行します。
-   ```bash
+50      
+    51     仮想環境内のパッケージを使用する場合は、`uv run <package name>` のように実行します。
+    52     ```bash
+    53     uv run pytest --cov --alluredir=allure-results
+    54     ```
+    55  
+    56     コードフォーマットには `black` を使用します。
+    57     ```bash
+    58     uv run black pages
+    59     uv run black tests
+    60     ```
+    61  
+    62     import 文のソートには `isort` を使用します。
+    63     ```bash
+    64     uv run isort .
+    65     ```
    uv run pytest --cov --alluredir=allure-results
    ```
 

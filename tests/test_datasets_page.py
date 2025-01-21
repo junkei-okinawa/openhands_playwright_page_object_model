@@ -4,8 +4,8 @@ import allure
 import pytest
 from playwright.sync_api import Page
 
-from pages.home_page import HomePage
 from pages.datasets_page import DatasetsPage
+from pages.home_page import HomePage
 
 
 @pytest.mark.asyncio
