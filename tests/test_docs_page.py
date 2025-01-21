@@ -13,7 +13,9 @@ from pages.docs_page import DocsPage
 @allure.id("14")
 @pytest.mark.docs
 async def test_docs_page_title(page: Page, base_url):
-    docs_page = DocsPage(page)
-    await docs_page.navigate()
-    assert "Documentation" in await docs_page.get_page_title()
+    with allure.step("Navigate to the Docs page"):
+        docs_page = DocsPage(page)
+        await docs_page.navigate()
+    with allure.step("Verify the title of the Docs page"):
+        assert "Documentation" in await docs_page.get_page_title()
     await docs_page.navigate()

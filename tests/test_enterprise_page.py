@@ -13,7 +13,9 @@ from pages.enterprise_page import EnterprisePage
 @allure.id("13")
 @pytest.mark.enterprise
 async def test_enterprise_page_title(page: Page, base_url):
-    enterprise_page = EnterprisePage(page)
-    await enterprise_page.navigate()
-    assert "Enterprise" in await enterprise_page.get_page_title()
+    with allure.step("Navigate to the Enterprise page"):
+        enterprise_page = EnterprisePage(page)
+        await enterprise_page.navigate()
+    with allure.step("Verify the title of the Enterprise page"):
+        assert "Enterprise" in await enterprise_page.get_page_title()
     await enterprise_page.navigate()

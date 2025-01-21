@@ -13,6 +13,8 @@ from pages.posts_page import PostsPage
 @allure.id("12")
 @pytest.mark.posts
 async def test_posts_page_title(page: Page, base_url):
-    posts_page = PostsPage(page)
-    await posts_page.navigate()
-    assert "Blog" in await posts_page.get_page_title()
+    with allure.step("Navigate to the Posts page"):
+        posts_page = PostsPage(page)
+        await posts_page.navigate()
+    with allure.step("Verify the title of the Posts page"):
+        assert "Blog" in await posts_page.get_page_title()
