@@ -1,11 +1,14 @@
 # Build Playwright Page Object Model with AI Agents
 
 このプロジェクトは、Web UI テストをPlaywright ＆ Page Object Model (POM) で実現するためにAI Agent[OpenHands](https://github.com/All-Hands-AI/OpenHands)を使用している実験的なプロジェクトです。
+このプロジェクトは、**非同期処理**で構築されています。
 
 ## プロジェクト構成
 
 - `pages/`: ページオブジェクトクラスが含まれています。
   - `base_page.py`: 共通のページ操作を定義するBasePageクラスが含まれています。
+  - `docs_page.py`: `Docs` ページのページオブジェクトクラスが含まれています。
+  - `enterprise_page.py`: `Enterprise` ページのページオブジェクトクラスが含まれています。
   - `locators.py`: ページ要素のロケータを定義するクラスが含まれています。
 
 - `tests/`: テストスクリプトが含まれています。
@@ -44,14 +47,25 @@
    rm allure_2.18.1-1_all.deb
    ```
 
-4. テストを実行します。
+4. コードフォーマットには `black` を使用します。
+   ```bash
+   uv run black pages
+   uv run black tests
+   ```
+
+5. import 文のソートには `isort` を使用します。
+   ```bash
+   uv run isort .
+   ```
+
+6. テストを実行します。
 
    仮想環境内のパッケージを使用する場合は、`uv run <package name>` のように実行します。
    ```bash
    uv run pytest --cov --alluredir=allure-results
    ```
 
-5. allure レポートを確認。allure はNo3でバイナリを直接インストールしているので`uv run`は必要ありません。
+7. allure レポートを確認。allure はNo3でバイナリを直接インストールしているので`uv run`は必要ありません。
    ```bash
    allure serve allure-results > allure.log 2>&1 &
    ```

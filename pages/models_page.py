@@ -3,6 +3,7 @@ from playwright.async_api import Page
 from .base_page import BasePage
 from .locators import ModelsPageLocators
 
+
 class ModelsPage(BasePage):
     def __init__(self, page: Page):
         self.page = page
@@ -28,6 +29,7 @@ class ModelsPage(BasePage):
         await self.search_box.click()
         await self.page.wait_for_load_state()
         await self.search_box.fill(keyword)
+
         await self.page.wait_for_timeout(1000)
         await self.see_all_model_results_for_element.wait_for()
         await self.see_all_model_results_for_element.click()

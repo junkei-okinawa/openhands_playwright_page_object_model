@@ -3,6 +3,7 @@ from playwright.async_api import Page
 from .base_page import BasePage
 from .locators import DatasetsPageLocators
 
+
 class DatasetsPage(BasePage):
     def __init__(self, page: Page):
         self.page = page

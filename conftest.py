@@ -1,13 +1,13 @@
-import sys
 import json
+import sys
 from pathlib import Path
 
 import allure
 import pytest
-from playwright.async_api import async_playwright, Browser, BrowserContext, Page
+from playwright.async_api import (Browser, BrowserContext, Page,
+                                  async_playwright)
 
 from pages.home_page import HomePage
-
 
 sys.path.insert(0, str(Path(__file__).parent))
 
