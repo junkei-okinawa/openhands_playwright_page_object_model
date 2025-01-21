@@ -40,3 +40,6 @@ class DocsPageLocators:
 
 class EnterprisePageLocators:
     TITLE = """xpath=//h1"""
+
+class PricingPageLocators:
+    pass
