@@ -38,6 +38,8 @@ class HomePage(BasePage):
 
     async def click_posts_tab(self):
         await self.posts_tab.click()
+        from .posts_page import PostsPage
+        return PostsPage(self.page)
 
     @property
     def docs_tab(self):
@@ -45,6 +47,8 @@ class HomePage(BasePage):
 
     async def click_docs_tab(self):
         await self.docs_tab.click()
+        from .docs_page import DocsPage
+        return DocsPage(self.page)
 
     @property
     def enterprise_tab(self):
@@ -52,6 +56,8 @@ class HomePage(BasePage):
 
     async def click_enterprise_tab(self):
         await self.enterprise_tab.click()
+        from .enterprise_page import EnterprisePage
+        return EnterprisePage(self.page)
 
     @property
     def pricing_tab(self):
@@ -59,3 +65,5 @@ class HomePage(BasePage):
 
     async def click_pricing_tab(self):
         await self.pricing_tab.click()
+        from .pricing_page import PricingPage
+        return PricingPage(self.page)
