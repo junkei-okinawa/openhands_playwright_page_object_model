@@ -2,7 +2,6 @@ import asyncio
 
 import allure
 import pytest
-from playwright.sync_api import Page
 
 from pages.datasets_page import DatasetsPage
 from pages.home_page import HomePage
