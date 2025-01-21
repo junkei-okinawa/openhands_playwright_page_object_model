@@ -1,7 +1,8 @@
+import asyncio
+
 import allure
 import pytest
-import asyncio
-from playwright.async_api import Page, expect
+from playwright.sync_api import Page, expect
 
 from pages.home_page import HomePage
 
