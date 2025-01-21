@@ -11,7 +11,6 @@ class DatasetsPage(BasePage):
     async def get_title_text(self) -> str:
         return await self.title.inner_text()
 
-
     @property
     def browse_datasets_button(self):
         return self.page.locator(DatasetsPageLocators.BROWSE_DATASETS_BUTTON)

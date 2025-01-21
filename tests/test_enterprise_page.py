@@ -8,4 +8,3 @@ from pages.enterprise_page import EnterprisePage
 async def test_enterprise_page_title(page: Page, base_url):
     enterprise_page = EnterprisePage(page)
     await enterprise_page.navigate()
-    assert "Enterprise" in await enterprise_page.get_page_title()

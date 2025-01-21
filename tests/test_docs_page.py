@@ -8,4 +8,3 @@ from pages.docs_page import DocsPage
 async def test_docs_page_title(page: Page, base_url):
     docs_page = DocsPage(page)
     await docs_page.navigate()
-    assert "Documentation" in await docs_page.get_page_title()

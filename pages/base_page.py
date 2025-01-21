@@ -10,4 +10,3 @@ class BasePage:
     async def goto(self, url: str):
         await self.page.goto(url)
         await self.wait_for_load_state()
-
