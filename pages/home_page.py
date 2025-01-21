@@ -2,8 +2,12 @@ from playwright.async_api import Page
 
 from .base_page import BasePage
 from .datasets_page import DatasetsPage
+from .docs_page import DocsPage
+from .enterprise_page import EnterprisePage
 from .locators import HomePageLocators
 from .models_page import ModelsPage
+from .posts_page import PostsPage
+from .pricing_page import PricingPage
 from .spaces_page import SpacesPage
 
 
@@ -38,7 +42,7 @@ class HomePage(BasePage):
 
     async def click_posts_tab(self):
         await self.posts_tab.click()
-        from .posts_page import PostsPage
+        
         return PostsPage(self.page)
 
     @property
@@ -47,7 +51,7 @@ class HomePage(BasePage):
 
     async def click_docs_tab(self):
         await self.docs_tab.click()
-        from .docs_page import DocsPage
+        
         return DocsPage(self.page)
 
     @property
@@ -56,7 +60,7 @@ class HomePage(BasePage):
 
     async def click_enterprise_tab(self):
         await self.enterprise_tab.click()
-        from .enterprise_page import EnterprisePage
+        
         return EnterprisePage(self.page)
 
     @property
@@ -65,5 +69,5 @@ class HomePage(BasePage):
 
     async def click_pricing_tab(self):
         await self.pricing_tab.click()
-        from .pricing_page import PricingPage
+        
         return PricingPage(self.page)
