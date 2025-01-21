@@ -46,23 +46,21 @@
    rm allure_2.18.1-1_all.deb
    ```
 
-4. コードフォーマットには `black` を使用します。
-   ```bash
-   uv run black pages
-   uv run black tests
-   ```
-
-5. import 文のソートには `isort` を使用します。
-   ```bash
-   uv run isort .
-   ```
-
-6. テストを実行します。
-
-   仮想環境内のパッケージを使用する場合は、`uv run <package name>` のように実行します。
-   ```bash
-   uv run pytest --cov --alluredir=allure-results
-   ```
+49      4. コードフォーマットには `black` を使用します。
+    50     ```bash
+    51     uv run black pages
+    52     uv run black tests
+    53     ```
+    54  
+    55  5. import 文のソートには `isort` を使用します。
+    56     ```bash
+    57     uv run isort .
+    58     ```
+    59  
+    60  6. テストを実行します。
+    61     ```bash
+    62     uv run pytest --cov --alluredir=allure-results
+    63     ```
 
 7. allure レポートを確認。allure はNo3でバイナリを直接インストールしているので`uv run`は必要ありません。
    ```bash
