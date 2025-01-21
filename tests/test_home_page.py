@@ -8,8 +8,12 @@ from pages.spaces_page import SpacesPage
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Models tab")
 @allure.description("This test verifies that clicking the Models tab navigates to the correct page and displays the expected title.")
+@allure.id("1")
 async def test_click_models_tab(home_page: HomePage, test_data):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -22,10 +26,12 @@ async def test_click_models_tab(home_page: HomePage, test_data):
 
 
 @pytest.mark.asyncio
-
-
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Datasets tab")
 @allure.description("This test verifies that clicking the Datasets tab navigates to the correct page and displays the expected title.")
+@allure.id("2")
 async def test_click_datasets_tab(home_page: HomePage, test_data):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -38,8 +44,12 @@ async def test_click_datasets_tab(home_page: HomePage, test_data):
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Spaces tab")
 @allure.description("This test verifies that clicking the Spaces tab navigates to the correct page and displays the expected title.")
+@allure.id("3")
 async def test_click_spaces_tab(home_page: HomePage, test_data):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -52,8 +62,12 @@ async def test_click_spaces_tab(home_page: HomePage, test_data):
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Posts tab")
 @allure.description("This test verifies that clicking the Posts tab navigates to the correct page.")
+@allure.id("4")
 async def test_click_posts_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -62,8 +76,12 @@ async def test_click_posts_tab(home_page: HomePage):
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Docs tab")
 @allure.description("This test verifies that clicking the Docs tab navigates to the correct page.")
+@allure.id("5")
 async def test_click_docs_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -72,8 +90,12 @@ async def test_click_docs_tab(home_page: HomePage):
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Enterprise tab")
 @allure.description("This test verifies that clicking the Enterprise tab navigates to the correct page.")
+@allure.id("6")
 async def test_click_enterprise_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -82,8 +104,12 @@ async def test_click_enterprise_tab(home_page: HomePage):
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
 @allure.title("Test clicking the Pricing tab")
 @allure.description("This test verifies that clicking the Pricing tab navigates to the correct page.")
+@allure.id("7")
 async def test_click_pricing_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
@@ -92,8 +118,12 @@ async def test_click_pricing_tab(home_page: HomePage):
 
 
 @pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
 @allure.title("Test that is intentionally failing")
 @allure.description("This test is intentionally failing to demonstrate the Allure report's failure handling.")
+@allure.id("8")
 async def test_failing_test(page: Page):
     with allure.step("Verify the page title"):
         assert await page.title() == "Wrong Title"
