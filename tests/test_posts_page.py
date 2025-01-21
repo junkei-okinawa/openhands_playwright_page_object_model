@@ -1,14 +1,9 @@
-import pytest
-from playwright.sync_api import Page
-
-from pages.posts_page import PostsPage
-
-
-import pytest
-from playwright.sync_api import Page
-
-from pages.posts_page import PostsPage
 import allure
+import pytest
+from playwright.sync_api import Page
+
+from pages.posts_page import PostsPage
+
 
 @pytest.mark.asyncio
 @allure.epic("Posts Page Tests")

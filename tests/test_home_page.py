@@ -20,7 +20,9 @@ from pages.spaces_page import SpacesPage
 async def test_click_models_tab(home_page: HomePage, test_data):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
-    tab_data = next(tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "models")
+    tab_data = next(
+        tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "models"
+    )
     with allure.step("Click the Models tab"):
         models_page = await home_page.click_models_tab()
     with allure.step("Verify the title of the Models page"):
@@ -40,7 +42,9 @@ async def test_click_models_tab(home_page: HomePage, test_data):
 async def test_click_datasets_tab(home_page: HomePage, test_data):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
-    tab_data = next(tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "datasets")
+    tab_data = next(
+        tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "datasets"
+    )
     with allure.step("Click the Datasets tab"):
         datasets_page = await home_page.click_datasets_tab()
     with allure.step("Verify the title of the Datasets page"):
@@ -60,7 +64,9 @@ async def test_click_datasets_tab(home_page: HomePage, test_data):
 async def test_click_spaces_tab(home_page: HomePage, test_data):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
-    tab_data = next(tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "spaces")
+    tab_data = next(
+        tab for tab in test_data["home_page_tabs"] if tab["tab_name"] == "spaces"
+    )
     with allure.step("Click the Spaces tab"):
         spaces_page = await home_page.click_spaces_tab()
     with allure.step("Verify the title of the Spaces page"):
