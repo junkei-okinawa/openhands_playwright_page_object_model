@@ -2,7 +2,7 @@ import asyncio
 
 import allure
 import pytest
-from playwright.sync_api import Page
+from playwright.async_api import Page
 
 from pages.home_page import HomePage
 from pages.spaces_page import SpacesPage

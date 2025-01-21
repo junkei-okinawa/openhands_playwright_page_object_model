@@ -1,6 +1,6 @@
 import allure
 import pytest
-from playwright.sync_api import Page
+from playwright.async_api import Page
 
 from pages.posts_page import PostsPage
 

@@ -1,6 +1,7 @@
 # Build Playwright Page Object Model with AI Agents
 
 このプロジェクトは、Web UI テストをPlaywright ＆ Page Object Model (POM) で実現するためにAI Agent[OpenHands](https://github.com/All-Hands-AI/OpenHands)を使用している実験的なプロジェクトです。
+このプロジェクトは、**非同期処理**で構築されています。
 
 ## プロジェクト構成
 
