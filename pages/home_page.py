@@ -59,9 +59,3 @@ class HomePage(BasePage):
 
     async def click_pricing_tab(self):
         await self.pricing_tab.click()
-
-    async def navigate_to_models_page(self):
-        await self.click_models_tab()
-        from .models_page import ModelsPage
-
-        return ModelsPage(self.page)

@@ -1,7 +1,9 @@
 import pytest
 from playwright.sync_api import Page
-from pages.pricing_page import PricingPage
+
 from pages.home_page import HomePage
+from pages.pricing_page import PricingPage
+
 
 @pytest.mark.smoke
 async def test_pricing_page_title(page: Page, home_page: HomePage):
