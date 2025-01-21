@@ -127,3 +127,4 @@ async def test_click_pricing_tab(home_page: HomePage):
 async def test_failing_test(page: Page):
     with allure.step("Verify the page title"):
         assert await page.title() == "Wrong Title"
+

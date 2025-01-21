@@ -32,6 +32,7 @@ async def test_search_models(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
     with allure.step("Navigate to the Models page"):
+
         models_page = await home_page.navigate_to_models_page()
     with allure.step("Search for models"):
         await models_page.search_models("bert")

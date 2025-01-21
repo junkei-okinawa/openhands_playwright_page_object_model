@@ -8,5 +8,6 @@ class SpacesPage(BasePage):
         self.page = page
         self.title = self.page.locator(SpacesPageLocators.TITLE)
 
+
     async def get_title_text(self) -> str:
         return await self.title.text_content()
