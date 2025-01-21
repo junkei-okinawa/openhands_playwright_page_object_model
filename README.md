@@ -52,12 +52,12 @@
     52     uv run black tests
     53     ```
     54  
-    55     import 文のソートには `isort` を使用します。
+    55  5. import 文のソートには `isort` を使用します。
     56     ```bash
     57     uv run isort .
     58     ```
     59  
-    60  5. テストを実行します。
+    60  6. テストを実行します。
     61  
     62     仮想環境内のパッケージを使用する場合は、`uv run <package name>` のように実行します。
     63     ```bash
