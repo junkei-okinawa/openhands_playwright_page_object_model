@@ -1,0 +1,33 @@
+[project]
+packages = ["pages"]
+name = "openhands-playwright-page-object-model"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "html5lib>=1.1",
+    "lxml>=5.3.0",
+    "playwright>=1.49.1",
+    "pytest-asyncio>=0.25.0",
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "allure-pytest>=2.13.5",
+    "pytest-base-url>=2.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=24.10.0",
+    "isort>=5.13.2",
+    "requests>=2.32.3",
+    "ruff>=0.8.4",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pages"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope="function"
