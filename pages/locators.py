@@ -41,7 +41,10 @@ class DocsPageLocators:
 class EnterprisePageLocators:
     TITLE = """xpath=//h1"""
 
+
 class PricingPageLocators:
     TITLE = """xpath=//h1"""
+
+
 class TasksPageLocators:
     TITLE = """xpath=//h1"""

@@ -1,11 +1,10 @@
+import allure
 import pytest
 from playwright.sync_api import Page
 
 from pages.home_page import HomePage
 from pages.pricing_page import PricingPage
 
-
-import allure
 
 @pytest.mark.asyncio
 @allure.epic("Pricing Page Tests")
