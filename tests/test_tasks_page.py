@@ -14,7 +14,7 @@ from pages.tasks_page import TasksPage
 @allure.description(
     "This test verifies that clicking the Tasks link navigates to the correct page and displays the expected title."
 )
-@allure.id("13")
+@allure.id("18")
 async def test_tasks_page_title(page: Page, home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")

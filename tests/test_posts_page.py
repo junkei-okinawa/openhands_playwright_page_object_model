@@ -10,7 +10,7 @@ from pages.posts_page import PostsPage
 @allure.feature("Navigation")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("This test verifies that the Posts page title is correct.")
-@allure.id("12")
+@allure.id("16")
 @pytest.mark.posts
 async def test_posts_page_title(page: Page, base_url):
     with allure.step("Navigate to the Posts page"):

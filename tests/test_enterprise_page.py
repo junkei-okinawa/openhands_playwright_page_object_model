@@ -10,7 +10,7 @@ from pages.enterprise_page import EnterprisePage
 @allure.feature("Navigation")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("This test verifies that the Enterprise page title is correct.")
-@allure.id("13")
+@allure.id("17")
 @pytest.mark.enterprise
 async def test_enterprise_page_title(page: Page, base_url):
     with allure.step("Navigate to the Enterprise page"):

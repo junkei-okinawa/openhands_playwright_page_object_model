@@ -14,7 +14,7 @@ from pages.pricing_page import PricingPage
 @allure.description(
     "This test verifies that clicking the Pricing tab navigates to the correct page and displays the expected title."
 )
-@allure.id("9")
+@allure.id("19")
 async def test_pricing_page_title(page: Page, home_page: HomePage):
     with allure.step("Navigate to the Pricing page"):
         pricing_page = PricingPage(page)
