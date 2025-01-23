@@ -2,6 +2,7 @@ import allure
 import pytest
 from playwright.async_api import Page
 
+from pages.home_page import HomePage
 from pages.enterprise_page import EnterprisePage
 
 
@@ -12,10 +13,11 @@ from pages.enterprise_page import EnterprisePage
 @allure.description("This test verifies that the Enterprise page title is correct.")
 @allure.id("17")
 @pytest.mark.enterprise
-async def test_enterprise_page_title(page: Page, base_url):
-    with allure.step("Navigate to the Enterprise page"):
-        enterprise_page = EnterprisePage(page)
-        await enterprise_page.navigate()
+async def test_enterprise_page_title(home_page: HomePage):
+    with allure.step("Navigate to the Hugging Face home page"):
+        await home_page.goto("https://huggingface.co/")
+    with allure.step("Click the the Enterprise link"):
+        enterprise_page = await home_page.click_enterprise_tab()
     with allure.step("Verify the title of the Enterprise page"):
-        assert "Enterprise" in await enterprise_page.get_page_title()
-    await enterprise_page.navigate()
+        assert "Enterprise Hub - Hugging Face" in await enterprise_page.page.title()
+

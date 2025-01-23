@@ -8,10 +8,6 @@ class PostsPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         self.locators = PostsPageLocators()
-        self.title = page.locator(self.locators.PAGE_TITLE)
 
     async def navigate(self):
-        await self.page.goto("https://huggingface.co/blog/")
-
-    async def get_page_title(self):
-        return await self.page.title()
+        await self.page.goto("https://huggingface.co/posts/")

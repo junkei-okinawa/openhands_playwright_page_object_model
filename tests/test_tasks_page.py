@@ -21,4 +21,4 @@ async def test_tasks_page_title(page: Page, home_page: HomePage):
     with allure.step("Click the Tasks link"):
         tasks_page = await home_page.click_tasks_link()
     with allure.step("Verify the title of the Tasks page"):
-        assert "Tasks" in await tasks_page.get_page_title()
+        assert "Tasks - Hugging Face" == await tasks_page.page.title()

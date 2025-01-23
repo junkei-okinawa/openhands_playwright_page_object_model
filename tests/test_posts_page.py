@@ -2,6 +2,7 @@ import allure
 import pytest
 from playwright.async_api import Page
 
+from pages.home_page import HomePage
 from pages.posts_page import PostsPage
 
 
@@ -12,9 +13,10 @@ from pages.posts_page import PostsPage
 @allure.description("This test verifies that the Posts page title is correct.")
 @allure.id("16")
 @pytest.mark.posts
-async def test_posts_page_title(page: Page, base_url):
-    with allure.step("Navigate to the Posts page"):
-        posts_page = PostsPage(page)
-        await posts_page.navigate()
+async def test_posts_page_title(home_page: HomePage):
+    with allure.step("Navigate to the Hugging Face home page"):
+        await home_page.goto("https://huggingface.co/")
+    with allure.step("Click the Posts page"):
+        posts_page = await home_page.click_posts_tab()
     with allure.step("Verify the title of the Posts page"):
-        assert "Blog" in await posts_page.get_page_title()
+        assert "Hugging Face – Posts" == await posts_page.page.title()
