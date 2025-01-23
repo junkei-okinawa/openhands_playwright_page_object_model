@@ -10,7 +10,4 @@ class PostsPage(BasePage):
         self.locators = PostsPageLocators()
 
     async def navigate(self):
-        await self.page.goto("https://huggingface.co/blog/")
-
-    async def get_page_title(self):
-        return await self.page.title()
+        await self.page.goto("https://huggingface.co/posts/")

@@ -6,8 +6,8 @@ from .locators import SpacesPageLocators
 
 class SpacesPage(BasePage):
     def __init__(self, page: Page):
-        self.page = page
-        self.title = self.page.locator(SpacesPageLocators.TITLE)
+        super().__init__(page)
+        self.locators = SpacesPageLocators()
 
-    async def get_page_title(self) -> str:
-        return await self.title.text_content()
+    async def navigate(self, url: str):
+        await self.page.goto("https://huggingface.co/spaces")

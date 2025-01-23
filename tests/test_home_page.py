@@ -26,7 +26,7 @@ async def test_click_models_tab(home_page: HomePage, test_data):
     with allure.step("Click the Models tab"):
         models_page = await home_page.click_models_tab()
     with allure.step("Verify the title of the Models page"):
-        title_text = await models_page.get_title_text()
+        title_text = await models_page.page.title()
         assert title_text == tab_data["expected_title"]
 
 
@@ -48,7 +48,7 @@ async def test_click_datasets_tab(home_page: HomePage, test_data):
     with allure.step("Click the Datasets tab"):
         datasets_page = await home_page.click_datasets_tab()
     with allure.step("Verify the title of the Datasets page"):
-        title_text = await datasets_page.get_title_text()
+        title_text = await datasets_page.page.title()
         assert title_text == tab_data["expected_title"]
 
 
@@ -70,7 +70,7 @@ async def test_click_spaces_tab(home_page: HomePage, test_data):
     with allure.step("Click the Spaces tab"):
         spaces_page = await home_page.click_spaces_tab()
     with allure.step("Verify the title of the Spaces page"):
-        title_text = await spaces_page.get_page_title()
+        title_text = await spaces_page.page.title()
         assert "Spaces" in title_text
 
 
@@ -87,7 +87,8 @@ async def test_click_posts_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
     with allure.step("Click the Posts tab"):
-        await home_page.click_posts_tab()
+        posts_page = await home_page.click_posts_tab()
+        assert "Posts" in await posts_page.page.title()
 
 
 @pytest.mark.asyncio
@@ -103,7 +104,8 @@ async def test_click_docs_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
     with allure.step("Click the Docs tab"):
-        await home_page.click_docs_tab()
+        docs_page = await home_page.click_docs_tab()
+        assert "Documentation" in await docs_page.page.title()
 
 
 @pytest.mark.asyncio
@@ -119,7 +121,8 @@ async def test_click_enterprise_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
     with allure.step("Click the Enterprise tab"):
-        await home_page.click_enterprise_tab()
+        enterprise_page = await home_page.click_enterprise_tab()
+        assert "Enterprise" in await enterprise_page.page.title()
 
 
 @pytest.mark.asyncio
@@ -135,7 +138,8 @@ async def test_click_pricing_tab(home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
     with allure.step("Click the Pricing tab"):
-        await home_page.click_pricing_tab()
+        pricing_page = await home_page.click_pricing_tab()
+        assert "Hugging Face – Pricing" == await pricing_page.page.title()
 
 
 @pytest.mark.asyncio

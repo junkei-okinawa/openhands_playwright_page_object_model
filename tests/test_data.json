@@ -2,15 +2,15 @@
   "home_page_tabs": [
     {
       "tab_name": "models",
-      "expected_title": "Models"
+      "expected_title": "Models - Hugging Face"
     },
     {
       "tab_name": "datasets",
-      "expected_title": "Datasets"
+      "expected_title": "Hugging Face – The AI community building the future."
     },
     {
       "tab_name": "spaces",
-      "expected_title": "Spaces"
+      "expected_title": "Spaces - Hugging Face"
     }
   ]
 }

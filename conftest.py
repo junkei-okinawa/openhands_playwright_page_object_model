@@ -35,7 +35,15 @@ async def page(request, context: BrowserContext, base_url: str):
     png_bytes = await page.screenshot()  # context.pages[0] ではなく page から取得
     allure.attach(png_bytes, name=request.node.name, attachment_type=allure.attachment_type.PNG)
     video_path = await page.video.path()
-    request.node._context_video_path = video_path  # 後でフック関数からアクセスできるように保存
+    if video_path:
+        try:
+            allure.attach.file(
+                video_path,
+                name=f"{request.node.name}-video-on-failure",
+                attachment_type=allure.attachment_type.WEBM
+            )
+        except Exception as e:
+            allure.attach(f"Error while attaching video: {e}")
     await page.close()
 
 
@@ -53,17 +61,10 @@ def test_data():
 def pytest_runtest_makereport(item, call):
     if "page" in item.fixturenames:  # page フィクスチャを使用しているテストのみ処理
         if call.when == "call":
-            print("""call.when == "call" """)
-            # teardown時にテストの失敗を判定できるようにitem(node)にexcinfoを格納
             item.excinfo = call.excinfo
         elif call.when == "teardown":
-            print("""call.when == "teardown" """)
-            print(f"hasattr(item, '_context_video_path'): {hasattr(item, '_context_video_path')}")
-            print(F"item._context_video_path: {item._context_video_path}")
-            print(f"item.excinfo: {item.excinfo}")
-            if item.excinfo:
-                # テストが失敗した場合の処理
-                if hasattr(item, '_context_video_path') and item._context_video_path:
+            if hasattr(item, 'excinfo') and item.excinfo:
+                if hasattr(item, '_context_video_path'):
                     try:
                         allure.attach.file(
                             item._context_video_path,

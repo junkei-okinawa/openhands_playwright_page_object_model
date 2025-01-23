@@ -6,6 +6,9 @@ class HomePageLocators:
     DOCS_TAB = """xpath=//nav//a[@href="/docs"]"""
     ENTERPRISE_TAB = """xpath=//nav//a[@href="/enterprise"]"""
     PRICING_TAB = """xpath=//nav//a[@href="/pricing"]"""
+    TASKS_LINK = """xpath=//a[@href="/tasks"]"""
+    INFERENCE_ENDPOINTS_LINK = """xpath=//a[@href='https://ui.endpoints.huggingface.co']"""
+    MENU_BUTTON = """xpath=//div[@class="relative group"]/button"""
 
 
 class ModelsPageLocators:
@@ -31,7 +34,6 @@ class SpacesPageLocators:
 
 class PostsPageLocators:
     TITLE = """xpath=//h1"""
-    PAGE_TITLE = """xpath=//h1"""
 
 
 class DocsPageLocators:
@@ -39,4 +41,17 @@ class DocsPageLocators:
 
 
 class EnterprisePageLocators:
+    TITLE = """xpath=//h1"""
+
+
+class PricingPageLocators:
+    TITLE = """xpath=//h1"""
+
+
+class InferenceEndpointsPageLocators:
+    TITLE = """xpath=//h1"""
+    TITLE_H2 = """xpath=//h2"""
+
+
+class TasksPageLocators:
     TITLE = """xpath=//h1"""

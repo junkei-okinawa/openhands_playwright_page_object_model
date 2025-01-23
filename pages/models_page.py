@@ -7,22 +7,19 @@ from .locators import ModelsPageLocators
 class ModelsPage(BasePage):
     def __init__(self, page: Page):
         self.page = page
-        self.title = page.locator(ModelsPageLocators.TITLE)
-
-    async def get_title_text(self):
-        return await self.title.inner_text()
+        self.locators = ModelsPageLocators()
 
     @property
     def search_box(self):
-        return self.page.locator(ModelsPageLocators.SEARCH_BOX)
+        return self.page.locator(self.locators.SEARCH_BOX)
 
     @property
     def see_all_model_results_for_element(self):
-        return self.page.locator(ModelsPageLocators.SEE_ALL_MODEL_RESULTS_FOR_ELEMENT)
+        return self.page.locator(self.locators.SEE_ALL_MODEL_RESULTS_FOR_ELEMENT)
 
     @property
     def filter_by_name_box(self):
-        return self.page.locator(ModelsPageLocators.FILTER_BY_NAME_BOX)
+        return self.page.locator(self.locators.FILTER_BY_NAME_BOX)
 
     async def search_models(self, keyword):
         await self.search_box.wait_for(state="visible")
