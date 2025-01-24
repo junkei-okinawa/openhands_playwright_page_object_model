@@ -143,6 +143,29 @@ async def test_click_pricing_tab(home_page: HomePage):
 
 
 @pytest.mark.asyncio
+
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.title("Test clicking the Inference Endpoints tab")
+@allure.description(
+"This test verifies that clicking the Inference Endpoints tab navigates to the correct page and displays the expected title."
+)
+@allure.id("9")
+async def test_click_inference_endpoints_tab(home_page: HomePage, test_data):
+with allure.step("Navigate to the Hugging Face home page"):
+await home_page.goto("https://huggingface.co/")
+tab_data = next(
+tab
+for tab in test_data["home_page_tabs"]
+if tab["tab_name"] == "inference endpoints"
+)
+with allure.step("Click the Inference Endpoints tab"):
+inference_endpoints_page = await home_page.click_inference_endpoints_tab()
+with allure.step("Verify the title of the Inference Endpoints page"):
+title_text = await inference_endpoints_page.page.title()
+assert title_text == tab_data["expected_title"]
 @allure.epic("Home Page Tests")
 @allure.feature("Failure Handling")
 @allure.severity(allure.severity_level.CRITICAL)

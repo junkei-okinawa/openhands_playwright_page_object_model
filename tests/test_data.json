@@ -13,4 +13,8 @@
       "expected_title": "Spaces - Hugging Face"
     }
   ]
+{
+"tab_name": "inference endpoints",
+"expected_title": "Inference Endpoints - Hugging Face"
+}
 }
