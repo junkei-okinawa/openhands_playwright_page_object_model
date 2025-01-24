@@ -12,4 +12,3 @@ class DatasetsPage(BasePage):
     @property
     def browse_datasets_button(self):
         return self.locators(DatasetsPageLocators.BROWSE_DATASETS_BUTTON)
-

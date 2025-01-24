@@ -2,8 +2,8 @@ import allure
 import pytest
 from playwright.async_api import Page
 
-from pages.home_page import HomePage
 from pages.enterprise_page import EnterprisePage
+from pages.home_page import HomePage
 
 
 @pytest.mark.asyncio
@@ -20,4 +20,3 @@ async def test_enterprise_page_title(home_page: HomePage):
         enterprise_page = await home_page.click_enterprise_tab()
     with allure.step("Verify the title of the Enterprise page"):
         assert "Enterprise Hub - Hugging Face" in await enterprise_page.page.title()
-

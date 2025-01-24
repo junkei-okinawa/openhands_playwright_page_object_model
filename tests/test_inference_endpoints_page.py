@@ -22,4 +22,7 @@ async def test_inference_endpoints_page_title(page: Page, home_page: HomePage):
         inference_endpoints_page = await home_page.click_inference_endpoints_link()
     with allure.step("Verify the title of the Inference Endpoints page"):
         await inference_endpoints_page.wait_for_load_state()
-        assert "Inference Endpoints by Hugging Face" == await inference_endpoints_page.page.title()
+        assert (
+            "Inference Endpoints by Hugging Face"
+            == await inference_endpoints_page.page.title()
+        )
