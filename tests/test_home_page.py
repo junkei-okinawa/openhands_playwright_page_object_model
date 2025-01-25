@@ -144,7 +144,7 @@ async def test_click_pricing_tab(home_page: HomePage):
 
 @pytest.mark.asyncio
 
-@pytest.mark.asyncio
+
 @allure.epic("Home Page Tests")
 @allure.feature("Navigation")
 @allure.severity(allure.severity_level.NORMAL)
@@ -166,14 +166,488 @@ inference_endpoints_page = await home_page.click_inference_endpoints_tab()
 with allure.step("Verify the title of the Inference Endpoints page"):
 title_text = await inference_endpoints_page.page.title()
 assert title_text == tab_data["expected_title"]
+@pytest.mark.asyncio
 @allure.epic("Home Page Tests")
 @allure.feature("Failure Handling")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.title("Test that is intentionally failing")
 @allure.description(
-    "This test is intentionally failing to demonstrate the Allure report's failure handling."
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
 )
 @allure.id("8")
 async def test_failing_test(page: Page):
-    with allure.step("Verify the page title"):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
+@allure.feature("Failure Handling")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.title("Test that is intentionally failing")
+@allure.description(
+"This test is intentionally failing to demonstrate the Allure report's failure handling."
+)
+@allure.id("8")
+async def test_failing_test(page: Page):
+with allure.step("Verify the page title"):
         assert await page.title() == "Wrong Title"
