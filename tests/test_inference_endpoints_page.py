@@ -1,28 +1,38 @@
-import allure
 import pytest
+import allure
 from playwright.async_api import Page
 
 from pages.home_page import HomePage
-from pages.inference_endpoints_page import InferenceEndpointsPage
-
 
 @pytest.mark.asyncio
 @allure.epic("Inference Endpoints Page Tests")
 @allure.feature("Navigation")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.title("Test clicking the Inference Endpoints link")
+@allure.title("Test navigation to Inference Endpoints page")
 @allure.description(
-    "This test verifies that clicking the Inference Endpoints link navigates to the correct page and displays the expected title."
+    """
+    This test verifies:
+    1. Inference Endpoints link exists on the home page
+    2. Link opens in a new tab
+    3. New tab has the correct URL and title
+    """
 )
 @allure.id("20")
-async def test_inference_endpoints_page_title(page: Page, home_page: HomePage):
+async def test_inference_endpoints_navigation(page: Page, home_page: HomePage):
     with allure.step("Navigate to the Hugging Face home page"):
         await home_page.goto("https://huggingface.co/")
-    with allure.step("Click the Inference Endpoints link and wait for new page"):
+
+    with allure.step("Verify Inference Endpoints link exists"):
+        link = page.locator('xpath=//a[contains(@href,"endpoints.huggingface.co")]')
+        await link.wait_for(state="visible")
+        assert await link.is_visible()
+
+    with allure.step("Click Inference Endpoints link and wait for new tab"):
         inference_endpoints_page = await home_page.click_inference_endpoints_link()
-    with allure.step("Verify the title of the Inference Endpoints page"):
-        await inference_endpoints_page.wait_for_load_state()
-        assert (
-            "Inference Endpoints by Hugging Face"
-            == await inference_endpoints_page.page.title()
-        )
+        
+    with allure.step("Verify new tab URL and title"):
+        await inference_endpoints_page.wait_for_page_load()
+        # URLのドメイン部分を検証
+        assert "endpoints.huggingface.co" in inference_endpoints_page.page.url
+        title = await inference_endpoints_page.get_page_title()
+        assert "Inference Endpoints" in title

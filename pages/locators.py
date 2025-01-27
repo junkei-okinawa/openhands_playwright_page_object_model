@@ -8,7 +8,7 @@ class HomePageLocators:
     PRICING_TAB = """xpath=//nav//a[@href="/pricing"]"""
     TASKS_LINK = """xpath=//a[@href="/tasks"]"""
     INFERENCE_ENDPOINTS_LINK = (
-        """xpath=//a[@href='https://ui.endpoints.huggingface.co']"""
+        """xpath=//a[contains(@href,'endpoints.huggingface.co')]"""
     )
     MENU_BUTTON = """xpath=//div[@class="relative group"]/button"""
 
