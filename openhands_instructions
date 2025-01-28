@@ -63,6 +63,39 @@ Directory Structure:
 - **ページオブジェクトの初期化**: ページオブジェクトは、`conftest.py` 内のpytestフィクスチャを使用して初期化されます。これにより、テストのセットアップが簡素化され、コードの可読性が向上します。
 - **データ駆動テスト**: テストデータは `test_data.json` ファイルで管理され、pytestフィクスチャを使用してロードされます。これにより、テストの柔軟性と保守性が向上します。
 
+## 新しいタブでのテスト
+- **タブの処理**: 新しいタブで開くリンクをテストする場合、以下の点に注意が必要です：
+    - `expect_popup()` を使用して新しいタブのイベントを待機
+    - 新しいタブのコンテキストに切り替えて操作を行う
+    - ページの読み込み状態を適切に待機
+    ```python
+    async with page.expect_popup() as new_page_info:
+        await link.click()
+    new_page = await new_page_info.value
+    await new_page.wait_for_load_state()
+    ```
+
+## 柔軟なテスト設計
+- **ロケーターの設計**:
+    - 完全一致よりも部分一致を使用（contains()など）
+    - URL検証は完全一致ではなくドメインなど重要な部分のみ検証
+    - タイトル検証も同様に柔軟な検証方法を選択
+    ```python
+    # 良い例
+    link = page.locator('xpath=//a[contains(@href,"endpoints.huggingface.co")]')
+    assert "endpoints.huggingface.co" in page.url
+    assert "Inference Endpoints" in await page.title()
+    
+    # 避けるべき例
+    link = page.locator('xpath=//a[@href="https://exact.url/path"]')
+    assert page.url == "https://exact.url/path"
+    assert await page.title() == "Exact Title"
+    ```
+- **待機戦略**:
+    - 要素の可視性を確認
+    - ページの読み込み状態を確認
+    - 適切なタイムアウト値の設定
+
 ### 要素特定におけるXPathの活用
 - Playwright で要素を特定する際、CSSセレクタだけでなく、XPath も積極的に活用しましょう。
 - 特に、以下のような場合に XPath が有効です。
@@ -85,47 +118,13 @@ Directory Structure:
   2. ファイル内で、ページに対応するPage Object Modelクラスを定義します。
   3. クラス内には、ページ上の要素にアクセスするためのメソッドを定義します。
 
-note:
-*   **`uv` の使い方**: `uv` は Python のパッケージ管理ツールとして非常に高速で便利ですが、仮想環境の管理や `pytest` の実行には注意が必要です。
-    *   `uv sync` は `requirements.txt` に記載された依存関係を仮想環境にインストールします。
-    *   `uv tool install` はツールをグローバルにインストールし、仮想環境とは独立して実行されます。
-    *   `uvx` は `uv tool` でインストールされたツールを実行するためのコマンドですが、仮想環境の依存関係を自動的に解決する機能はありません。
-    *   `uv pip install -r requirements.txt` で仮想環境に依存関係をインストールできます。
-*   **`pytest` の設定**: `pytest` を使用して非同期テストを実行するには、`pytest-asyncio` プラグインをインストールし、`pytest.ini` または `pyproject.toml` で設定を行う必要があります。
-    *   `pytest.ini` で設定を行う場合は、`[pytest]` セクションに `asyncio_mode = auto` を記述します。
-    *   `pyproject.toml` で設定を行う場合は、`[tool.pytest.ini_options]` セクションに `asyncio_mode = "auto"` を記述します。
-*   **Playwright のインストール**: Playwright のブラウザ実行ファイルは、`uv run playwright install --with-deps chromium` でインストールする必要があります。
-    *   **`allure` のインストール**: `allure` は、以下のコマンドでインストールする必要があります。
-        ```bash
-        sudo apt-get install -y default-jre
-        wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
-        sudo dpkg -i allure_2.18.1-1_all.deb
-        rm allure_2.18.1-1_all.deb
-        rm install_jre.log
-        ```
-*   **`conftest.py` の使い方**: テストファイルからプロジェクトのモジュールをインポートするには、`conftest.py` を使用して `sys.path` を更新する必要があります。
-*   **`pyproject.toml` の設定**: `pyproject.toml` に `packages = ["pages"]` を追記することで、`pages` ディレクトリをパッケージとして認識させることができます。
-*   **`pytest-cov` の設定**: `pytest-cov` は、`pyproject.toml` の `[project]` セクションを読み込もうとしますが、形式が正しくないとエラーが発生します。`[project]` セクションを削除するか、`pytest.ini` に `testpaths` を設定することで、エラーを回避できます。
-*   **Allure デコレータ**: テストの Allure レポートを強化するために、以下のデコレータを使用してください。
-    *   `@allure.epic`: テストをエピックでグループ化します。
-    *   `@allure.feature`: テストをフィーチャーでグループ化します。
-    *   `@allure.severity`: テストの重要度レベルを設定します。
-    *   `@allure.step`: テストをより小さく、理解しやすいステップに分割します。
-    *   `@allure.description`: テストケースの詳細な説明を提供します。
-    *   `@allure.id`: テストケースに一意のIDを設定します。
-*   **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成するには、`curl` コマンドを使用し、`GITHUB_TOKEN` を設定する必要があります。
-*   **`sudo apt-get install` の注意点**: `sudo apt-get install` は時間がかかる場合があり、バックグラウンドで実行するとプロンプトに応答できなくなるため、`-y` オプションを使用するか、フォアグラウンドで実行する必要があります。また、ロックファイルによる競合が発生する可能性があるため、注意が必要です。
-*   **`git filter-branch` の使い方**: 過去のコミット履歴からファイルを削除するには、`git filter-branch` を使用できますが、注意が必要です。
-*   **`README.md` の記述**: `README.md` には、実行手順や設定だけでなく、削除したファイルや変更点についても記述することで、他の開発者が理解しやすくなります。
-*   **`git push --force` の使い方**: 強制プッシュは、リモートブランチの履歴を書き換えるため、注意して使用する必要があります。
-*   **プロジェクトのナレッジ**: プロジェクトに関するナレッジは、この `openhands_instructions` に記述してください。
-*   **`allure serve` の実行**: `allure serve` コマンドは、バックグラウンドで実行し、ブラウザでレポートを確認後、プロセスをkillする必要があります。`uvx` は `apt-get` でインストールされた `allure` を認識しないため、直接 `allure serve` コマンドを使用する必要があります。
-*   **ブラウザでのレポート確認**: `allure serve` が出力するURLをブラウザで開き、レポートを確認します。
-*   **ファイル編集の代替手段**: `str_replace_editor` や `sed` コマンドでの編集が困難な場合、ファイルを削除して再作成するという手段が有効です。
-*   **プルリクエストの作成**: GitHub API を使用してプルリクエストを作成する際には、リポジトリ名や組織名を正しく取得する必要があります。`git remote -v` の出力からリポジトリ情報を抽出する際には、`awk` や `sed` などのコマンドの処理を慎重に行う必要があります。また、APIリクエストが失敗した場合は、リポジトリ名や組織名が正しいか確認する必要があります。
-*   **`here document` の注意点**: `cat << EOF` のような `here document` は、タイムアウトが発生する場合があります。
-*   **`echo` コマンドの注意点**: `echo` コマンドで複数行の文字列を生成し、リダイレクトでファイルに書き込む場合、特殊文字のエスケープが複雑になるため、注意が必要です。
-*   **`sed` コマンドの注意点**: `sed` コマンドは、特殊文字のエスケープが複雑になるため、注意して使用する必要があります。
+## Custom Instructions
+- **会話は日本語で行うこと。**
+- **作業区切りの良いタイミングで、進捗をissueのコメントに投稿すること。チーム開発で他メンバーとの競合を避けるために必要です**
+- **`todays_instructions.md`はpush前に削除すること**
 
-*   **`pytest` のテスト自動検出**: `pytest` は、テストファイル内の `test_` で始まる関数を自動的にテストケースとして認識し、実行します。そのため、テスト関数を `main` 関数内で明示的に呼び出す必要はありません。
-*   **`async def main():` の不要性**: `pytest` を使用してテストを実行する場合、`async def main():` 関数は不要です。`pytest` はテスト関数を自動的に検出して実行するため、`main` 関数は必要ありません。
+## Note:
+- 指示はissueに記載
+- issue, コメント投稿にはGithub APIを使用する
+- issue, コメント投稿時のコミュニケーション言語は**日本語**
+- issue, コメント投稿時はMarkdown形式で記述

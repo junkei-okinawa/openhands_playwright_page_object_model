@@ -144,6 +144,32 @@ async def test_click_pricing_tab(home_page: HomePage):
 
 @pytest.mark.asyncio
 @allure.epic("Home Page Tests")
+@allure.feature("Navigation")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.title("Test clicking the Inference Endpoints tab")
+@allure.description(
+    "This test verifies that clicking the Inference Endpoints link opens a new tab with the correct URL and title."
+)
+@allure.id("9")
+async def test_click_inference_endpoints_tab(home_page: HomePage, test_data):
+    with allure.step("Navigate to the Hugging Face home page"):
+        await home_page.goto("https://huggingface.co/")
+
+    with allure.step("Click the Inference Endpoints link"):
+        inference_endpoints_page = await home_page.click_inference_endpoints_link()
+
+    with allure.step("Verify the page URL and title"):
+        # 新しいタブでページが読み込まれるのを待つ
+        await inference_endpoints_page.wait_for_page_load()
+        # URLのドメイン部分を検証
+        assert "endpoints.huggingface.co" in inference_endpoints_page.page.url
+        # タイトルに"Inference Endpoints"が含まれることを確認
+        title_text = await inference_endpoints_page.page.title()
+        assert "Inference Endpoints" in title_text
+
+
+@pytest.mark.asyncio
+@allure.epic("Home Page Tests")
 @allure.feature("Failure Handling")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.title("Test that is intentionally failing")
