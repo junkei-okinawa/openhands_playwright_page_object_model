@@ -1,16 +1,21 @@
 from playwright.async_api import Page
 
+from .about_page import AboutPage
 from .base_page import BasePage
+from .brand_assets_page import BrandAssetsPage
 from .datasets_page import DatasetsPage
 from .docs_page import DocsPage
 from .enterprise_page import EnterprisePage
+from .huggingchat_page import HuggingChatPage
 from .inference_endpoints_page import InferenceEndpointsPage
 from .locators import HomePageLocators
 from .models_page import ModelsPage
 from .posts_page import PostsPage
 from .pricing_page import PricingPage
+from .privacy_page import PrivacyPage
 from .spaces_page import SpacesPage
 from .tasks_page import TasksPage
+from .terms_of_service_page import TermsOfServicePage
 
 
 class HomePage(BasePage):
@@ -99,3 +104,56 @@ class HomePage(BasePage):
             await self.inference_endpoints_link.click()
         new_page = await new_page_info.value
         return InferenceEndpointsPage(new_page)
+
+    @property
+    def huggingchat_link(self):
+        return self.page.locator(self.locators.HUGGINGCHAT_LINK)
+
+    async def click_huggingchat_link(self):
+        await self.huggingchat_link.click()
+        await self.page.wait_for_load_state("networkidle")
+        return HuggingChatPage(self.page)
+
+    @property
+    def about_link_footer(self):
+        return self.page.locator(self.locators.ABOUT_LINK_FOOTER)
+
+    async def click_about_link_footer(self):
+        await self.about_link_footer.click()
+        await self.page.wait_for_load_state()
+        return AboutPage(self.page)
+
+    @property
+    def brand_assets_link_footer(self):
+        return self.page.locator(self.locators.BRAND_ASSETS_LINK_FOOTER)
+
+    async def click_brand_assets_link_footer(self):
+        await self.brand_assets_link_footer.click()
+        await self.page.wait_for_load_state()
+        return BrandAssetsPage(self.page)
+
+    @property
+    def terms_of_service_link_footer(self):
+        return self.page.locator(self.locators.TERMS_OF_SERVICE_LINK_FOOTER)
+
+    async def click_terms_of_service_link_footer(self):
+        await self.terms_of_service_link_footer.click()
+        await self.page.wait_for_load_state()
+        return TermsOfServicePage(self.page)
+
+    @property
+    def privacy_link_footer(self):
+        return self.page.locator(self.locators.PRIVACY_LINK_FOOTER)
+
+    async def click_privacy_link_footer(self):
+        await self.privacy_link_footer.click()
+        await self.page.wait_for_load_state()
+        return PrivacyPage(self.page)
+
+    @property
+    def jobs_link_footer(self):
+        return self.page.locator(self.locators.JOBS_LINK_FOOTER)
+
+    async def click_jobs_link_footer(self):
+        await self.jobs_link_footer.click()
+        return self.page

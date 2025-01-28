@@ -15,6 +15,10 @@
     {
       "tab_name": "inference endpoints",
       "expected_title": "Inference Endpoints by Hugging Face"
+    },
+    {
+      "tab_name": "huggingchat",
+      "expected_title": "HuggingChat - Chat with the most popular open source AI models"
     }
   ]
 }

@@ -10,7 +10,13 @@ class HomePageLocators:
     INFERENCE_ENDPOINTS_LINK = (
         """xpath=//a[contains(@href,'endpoints.huggingface.co')]"""
     )
+    HUGGINGCHAT_LINK = """xpath=//a[contains(@href,'/chat') and contains(@class,'rounded-lg')]"""
     MENU_BUTTON = """xpath=//div[@class="relative group"]/button"""
+    ABOUT_LINK_FOOTER = """xpath=//footer//a[@href="/huggingface"]"""
+    BRAND_ASSETS_LINK_FOOTER = """xpath=//footer//a[@href="/brand"]"""
+    TERMS_OF_SERVICE_LINK_FOOTER = """xpath=//footer//a[@href="/terms-of-service"]"""
+    PRIVACY_LINK_FOOTER = """xpath=//footer//a[@href="/privacy"]"""
+    JOBS_LINK_FOOTER = """xpath=//footer//a[contains(@href, 'workable.com')]"""
 
 
 class ModelsPageLocators:
@@ -50,10 +56,41 @@ class PricingPageLocators:
     TITLE = """xpath=//h1"""
 
 
+class TasksPageLocators:
+    TITLE = """xpath=//h1"""
+
+
+class HuggingChatPageLocators:
+    TITLE = """xpath=//h2[contains(text(), 'HuggingChat')]"""
+    CHAT_INPUT = """xpath=//textarea[contains(@placeholder, 'Ask')]"""
+    NEW_CHAT_BUTTON = """xpath=//a[contains(@href, '/chat') and normalize-space(text())='New Chat']"""
+
+
 class InferenceEndpointsPageLocators:
     TITLE = """xpath=//h1"""
     TITLE_H2 = """xpath=//h2"""
+    # 料金プランセクション
+    PRICING_PLANS = """xpath=//div[contains(@class, 'pricing-table')]"""
+    PRICING_PLAN_CARDS = """xpath=//div[contains(@class, 'pricing-card')]"""
+    # デプロイセクション
+    DEPLOY_BUTTON = """xpath=//a[contains(@href, '/deploy') or contains(text(), 'Deploy')]"""
+    GET_STARTED_BUTTON = """xpath=//a[contains(text(), 'Get Started')]"""
+    # 機能説明セクション
+    FEATURES_SECTION = """xpath=//section[contains(@class, 'features-section')]"""
+    FEATURES_CARDS = """xpath=//div[contains(@class, 'feature-card')]"""
 
 
-class TasksPageLocators:
+class AboutPageLocators:
     TITLE = """xpath=//h1"""
+
+
+class BrandAssetsPageLocators:
+    TITLE = """xpath=//h2"""
+
+
+class TermsOfServicePageLocators:
+    TITLE = """xpath=//h1[contains(text(), 'Terms of Service')]"""
+
+
+class PrivacyPageLocators:
+    TITLE = """xpath=//h1[contains(text(), 'Privacy')]"""
