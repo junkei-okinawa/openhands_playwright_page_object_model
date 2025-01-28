@@ -26,7 +26,9 @@ async def test_navigate_to_huggingchat_page(page: Page, base_url: str) -> None:
 
     # Assert
     current_url = page.url
-    assert "/chat" in current_url, f"Expected URL to contain '/chat', but got {current_url}"
+    assert (
+        "/chat" in current_url
+    ), f"Expected URL to contain '/chat', but got {current_url}"
 
     # ロゴが表示されることを確認
     title = huggingchat_page.page.locator(huggingchat_page.locators.TITLE)
@@ -34,8 +36,12 @@ async def test_navigate_to_huggingchat_page(page: Page, base_url: str) -> None:
 
     # チャット入力とNew Chatボタンが表示されることを確認
     try:
-        assert await huggingchat_page.is_chat_input_visible(), "Chat input should be visible"
-        assert await huggingchat_page.is_new_chat_button_visible(), "New chat button should be visible"
+        assert (
+            await huggingchat_page.is_chat_input_visible()
+        ), "Chat input should be visible"
+        assert (
+            await huggingchat_page.is_new_chat_button_visible()
+        ), "New chat button should be visible"
     except Exception as e:
         page_content = await page.content()
         print(f"Page content: {page_content[:500]}...")  # 最初の500文字だけ表示

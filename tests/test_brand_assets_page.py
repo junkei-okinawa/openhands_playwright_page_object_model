@@ -25,11 +25,15 @@ async def test_brand_assets_page_navigation(page: Page, home_page: HomePage):
             await home_page.goto("https://huggingface.co/")
 
         with allure.step("Verify Brand assets link exists in footer"):
-            brand_assets_link = page.locator(home_page.locators.BRAND_ASSETS_LINK_FOOTER)
+            brand_assets_link = page.locator(
+                home_page.locators.BRAND_ASSETS_LINK_FOOTER
+            )
             await brand_assets_link.wait_for(state="visible")
             assert await brand_assets_link.is_visible()
 
-        with allure.step("Click Brand assets link in footer and wait for Brand assets page to load"):
+        with allure.step(
+            "Click Brand assets link in footer and wait for Brand assets page to load"
+        ):
             brand_assets_page = await home_page.click_brand_assets_link_footer()
 
         with allure.step("Verify Brand assets page title"):

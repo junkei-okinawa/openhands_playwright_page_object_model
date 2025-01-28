@@ -24,11 +24,15 @@ async def test_terms_of_service_page_navigation(page: Page, home_page: HomePage)
         await home_page.goto("https://huggingface.co/")
 
     with allure.step("Verify Terms of service link exists in footer"):
-        terms_of_service_link = page.locator(home_page.locators.TERMS_OF_SERVICE_LINK_FOOTER)
+        terms_of_service_link = page.locator(
+            home_page.locators.TERMS_OF_SERVICE_LINK_FOOTER
+        )
         await terms_of_service_link.wait_for(state="visible")
         assert await terms_of_service_link.is_visible()
 
-    with allure.step("Click Terms of service link in footer and wait for Terms of service page to load"):
+    with allure.step(
+        "Click Terms of service link in footer and wait for Terms of service page to load"
+    ):
         terms_of_service_page = await home_page.click_terms_of_service_link_footer()
 
     with allure.step("Verify Terms of service page title"):
