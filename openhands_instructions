@@ -122,3 +122,9 @@ Directory Structure:
 - **会話は日本語で行うこと。**
 - **作業区切りの良いタイミングで、進捗をissue#32のコメントに投稿すること。チーム開発で他メンバーとの競合を避けるために必要です**
 - **`todays_instructions.md`はpush前に削除すること**
+
+## Note:
+- 指示はissue#32に記載
+- issue, コメント投稿にはGithub APIを使用する
+- issue, コメント投稿時のコミュニケーション言語は日本語**bold**
+- issue, コメント投稿時のMarkdown形式で記述
